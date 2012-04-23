@@ -20,9 +20,19 @@ U = rUA*UEqn.H();
           - fvm::laplacian(rho*rUA, p)
          ==
             parcels.Srho()
+           + massSource.SuTot()
         );
-
-        pEqn.solve();
+        if((corr == nCorr-1)&&(nonOrth == nNonOrthCorr))
+        {
+            pEqn.solve();
+        }
+        else
+        {
+            double prestemp = pres;
+            pres = pEqn.solve().initialResidual();
+            if(fabs(prestemp)>fabs(pres))
+                pres = prestemp;
+        }
 
         if (nonOrth == nNonOrthCorr)
         {

@@ -4,7 +4,7 @@ derivedFvPatchFields/solidWallMixedTemperatureCoupled/solidWallMixedTemperatureC
 fluid/compressibleCourantNo.C
 solid/solidRegionDiffNo.C
 
-porousReactingMultiregionIterativeParcelFoam.C
+parcelIterativeFoam.C
 
-EXE = $(FOAM_USER_APPBIN)/porousIterativeMultiregionFoam
+EXE = $(FOAM_USER_APPBIN)/parcelIterativeFoam
 

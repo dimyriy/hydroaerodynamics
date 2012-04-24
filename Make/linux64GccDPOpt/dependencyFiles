@@ -3,4 +3,4 @@ derivedFvPatchFields/solidWallHeatFluxTemperature/solidWallHeatFluxTemperatureFv
 derivedFvPatchFields/solidWallMixedTemperatureCoupled/solidWallMixedTemperatureCoupledFvPatchScalarField.dep\
 fluid/compressibleCourantNo.dep\
 solid/solidRegionDiffNo.dep\
-porousReactingMultiregionIterativeParcelFoam.dep
+parcelIterativeFoam.dep

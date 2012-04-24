@@ -26,7 +26,6 @@ EXE_LIBS = \
     -lcompressibleTurbulenceModel \
     -lfiniteVolume \
     -lmeshTools \
-    -lcompressibleTurbulenceModel \
     -lcompressibleRASModels \
     -lcompressibleLESModels \
     -llagrangian \

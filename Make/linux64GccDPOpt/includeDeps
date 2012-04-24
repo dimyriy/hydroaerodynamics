@@ -2,4 +2,4 @@ include derivedFvPatchFields/solidWallHeatFluxTemperature/solidWallHeatFluxTempe
 include derivedFvPatchFields/solidWallMixedTemperatureCoupled/solidWallMixedTemperatureCoupledFvPatchScalarField.dep
 include fluid/compressibleCourantNo.dep
 include solid/solidRegionDiffNo.dep
-include porousReactingMultiregionIterativeParcelFoam.dep
+include parcelIterativeFoam.dep

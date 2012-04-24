@@ -3,4 +3,4 @@ $(OBJECTS_DIR)/solidWallHeatFluxTemperatureFvPatchScalarField.o\
 $(OBJECTS_DIR)/solidWallMixedTemperatureCoupledFvPatchScalarField.o\
 $(OBJECTS_DIR)/compressibleCourantNo.o\
 $(OBJECTS_DIR)/solidRegionDiffNo.o\
-$(OBJECTS_DIR)/porousReactingMultiregionIterativeParcelFoam.o
+$(OBJECTS_DIR)/parcelIterativeFoam.o

@@ -6,4 +6,4 @@ EXE_INC =     -Ifluid     -Isolid     -Iinclude     -I$(LIB_SRC)/meshTools/lnInc
 # 23 "options"
 
 
-EXE_LIBS =     -lcompressibleTurbulenceModel     -lfiniteVolume     -lmeshTools     -lcompressibleTurbulenceModel     -lcompressibleRASModels     -lcompressibleLESModels     -llagrangian     -llagrangianIntermediate     -lspecie     -lbasicThermophysicalModels     -lliquids     -lliquidMixture     -lsolids     -lsolidMixture     -lthermophysicalFunctions     -lreactionThermophysicalModels     -lchemistryModel     -lradiation     -ODE
+EXE_LIBS =     -lcompressibleTurbulenceModel     -lfiniteVolume     -lmeshTools     -lcompressibleRASModels     -lcompressibleLESModels     -llagrangian     -llagrangianIntermediate     -lspecie     -lbasicThermophysicalModels     -lliquids     -lliquidMixture     -lsolids     -lsolidMixture     -lthermophysicalFunctions     -lreactionThermophysicalModels     -lchemistryModel     -lradiation     -ODE

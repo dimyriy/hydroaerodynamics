@@ -13,10 +13,6 @@
     PtrList<compressible::turbulenceModel> turbulence(fluidRegions.size());
     PtrList<thermoReactingCloud> parcelFluid(fluidRegions.size());
     PtrList<radiation::radiationModel> radiationFluid(fluidRegions.size());
-    PtrList<scalarTimeActivatedExplicitSourceList> massSourceFluid(fluidRegions.size());
-    PtrList<vectorTimeActivatedExplicitSourceList> momentumSourceFluid(fluidRegions.size());
-    PtrList<scalarTimeActivatedExplicitSourceList> energySourceFluid(fluidRegions.size());
-
     List<scalar> initialMassFluid(fluidRegions.size());
 
     // Populate fluid field pointer lists
@@ -223,48 +219,6 @@
                 dimensionedScalar("zero",dimless,0.0)
             )
         );
-
-
-    Info<< "Creating mass source\n" << endl;
-    massSourceFluid.set
-    (
-        i,
-        new scalarTimeActivatedExplicitSourceList
-        (
-            "mass",
-            fluidRegions[i],
-            dimMass/dimTime/dimVolume,
-            thermoFluid[i].composition().species()
-        )
-    );
-
-
-    Info<< "Creating momentum source\n" << endl;
-    momentumSourceFluid.set
-    (
-        i,
-        new vectorTimeActivatedExplicitSourceList
-        (
-            "momentum",
-            fluidRegions[i],
-            dimMass*dimVelocity/dimTime/dimVolume,
-            "U"
-        )
-    );
-
-    Info<< "Creating energy source\n" << endl;
-    energySourceFluid.set
-    (
-        i,
-        new scalarTimeActivatedExplicitSourceList
-        (
-            "energy",
-            fluidRegions[i],
-            dimEnergy/dimTime/dimVolume,
-            "h"
-        )
-    );
-
 
 
         chemistryShFluid.set

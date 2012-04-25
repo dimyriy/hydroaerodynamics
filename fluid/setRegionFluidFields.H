@@ -1,6 +1,6 @@
     const fvMesh& mesh = fluidRegions[i];
-    #include "readAdditionalSolutionControls.H"
     psiChemistryModel& chemistry = pChemistryFluid[i];
+    thermoFluid[i] = chemistry.thermo();
     hsCombustionThermo& thermo = chemistry.thermo();
     Switch turbulentReaction(chemistryProperties[i].lookup("turbulentReaction"));
     dimensionedScalar Cmix("Cmix",dimless,1.0);
@@ -28,7 +28,6 @@
     surfaceScalarField& phi = phiFluid[i];
     PtrList<volScalarField>& Y = composition.Y();
     compressible::turbulenceModel& turb = turbulence[i];
-    #include "createExplicitSources.H"
     volScalarField& p = thermo.p();
     const volScalarField& psi = thermo.psi();
     volScalarField& hs = thermo.hs();

@@ -20,7 +20,6 @@ U = rUA*UEqn.H();
           - fvm::laplacian(rho*rUA, p)
          ==
             parcels.Srho()
-           + massSource.SuTot()
         );
         if((corr == nCorr-1)&&(nonOrth == nNonOrthCorr))
         {

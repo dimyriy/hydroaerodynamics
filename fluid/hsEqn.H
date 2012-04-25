@@ -8,7 +8,6 @@
         DpDt
      +  parcels.Sh()
      +  radiation.Shs(thermo)
-     +  energySource.Su()
      +  chemistrySh
     );
 

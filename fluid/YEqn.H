@@ -27,8 +27,7 @@ tmp<fv::convectionScheme<scalar> > mvConvection
               - fvm::laplacian(turb.muEff(), Yj)
               ==
                 parcels.Srho(j)
-               + kappa*chemistry.RR(j)().dimensionedInternalField()
-              + massSource.Su(j),
+               + kappa*chemistry.RR(j)().dimensionedInternalField(),
                 mesh.solver("Yj")
             );
             Yj.max(0.0);

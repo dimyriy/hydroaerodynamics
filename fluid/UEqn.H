@@ -6,7 +6,6 @@
      ==
         rho.dimensionedInternalField()*gFluid[i]
       + parcels.SU()
-      + momentumSource.Su()
     );
 
     if (momentumPredictor)

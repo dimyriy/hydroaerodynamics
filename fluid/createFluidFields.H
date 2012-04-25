@@ -1,7 +1,7 @@
     // Initialise fluid field pointer lists
     PtrList<IOdictionary> chemistryProperties(fluidRegions.size());
     PtrList<psiChemistryModel> pChemistryFluid(fluidRegions.size());
-    PtrList<hsCombustionThermo> thermoFluid(fluidRegions.size());
+//    PtrList<hsCombustionThermo> thermoFluid(fluidRegions.size());
     PtrList<DimensionedField<scalar, volMesh> > kappaFluid(fluidRegions.size());
     PtrList<volScalarField> rhoFluid(fluidRegions.size());
     PtrList<volScalarField> KFluid(fluidRegions.size());
@@ -33,12 +33,12 @@
                 )
             ).ptr()
         );
-        thermoFluid.set
+/*        thermoFluid.set
         (
             i,
             hsCombustionThermo::New(fluidRegions[i]).ptr()
         );
-
+*/
         Info<< "*** Reading chemistry properties for region "
             << fluidRegions[i].name() << nl <<endl;
         chemistryProperties.set
@@ -71,7 +71,7 @@
                     IOobject::NO_READ,
                     IOobject::AUTO_WRITE
                 ),
-                thermoFluid[i].rho()
+                pChemistryFluid[i].thermo().rho()
             )
         );
 
@@ -90,7 +90,7 @@
                     IOobject::NO_READ,
                     IOobject::NO_WRITE
                 ),
-                thermoFluid[i].Cp()*thermoFluid[i].alpha()
+                pChemistryFluid[i].thermo().Cp()*pChemistryFluid[i].thermo().alpha()
             )
         );
 
@@ -158,7 +158,7 @@
                     rhoFluid[i],
                     UFluid[i],
                     phiFluid[i],
-                    thermoFluid[i]
+                    pChemistryFluid[i].thermo()
                 )
             ).ptr()
         );
@@ -169,7 +169,7 @@
             (
                 radiation::radiationModel::New
                 (
-                    thermoFluid[i].T()
+                    pChemistryFluid[i].thermo().T()
                 )
             ).ptr()
         );
@@ -198,7 +198,7 @@
                 rhoFluid[i],
                 UFluid[i],
                 gFluid[i],
-                thermoFluid[i]
+                pChemistryFluid[i].thermo()
             )
         );
 

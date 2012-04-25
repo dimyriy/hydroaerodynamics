@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
             }
             if(Pstream::master()&&(fileWrite))
                     resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<spres<<"`	"<<pres;
-            if((uxres<=UxConvergence)&&(rhores<=rhoConvergence)&&(spres<=specieConvergence)&&(pres<=pConvergence)&&(hsres<=hsConvergence))
+            if((uxres<=UxConvergence)&&(spres<=specieConvergence)&&(pres<=pConvergence))
             {
                 break;
             }

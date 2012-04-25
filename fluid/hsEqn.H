@@ -13,7 +13,7 @@
 
     hEqn.relax();
 
-    hEqn.solve();
+    hsres = hEqn.solve().initialResidual();
 
     thermo.correct();
 

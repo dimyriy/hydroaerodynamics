@@ -131,10 +131,7 @@ int main(int argc, char *argv[])
                     << fluidRegions[i].name() << nl;
                 #include "setRegionFluidFields.H"
                 #include "readFluidMultiRegionPIMPLEControls.H"
-                volScalarField hsRES = thermo.T();
                 #include "solveFluid.H"
-                #include "residuals.H"
-                hsRES.clear();
                 turb.correct();
                 rho=thermo.rho();
             }

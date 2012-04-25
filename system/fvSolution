@@ -1,0 +1,30 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+PIMPLE
+{
+    nOuterCorrectors 5;
+    debugLevel       0;
+    UxConvergence 1e-4;
+    pConvergence  1e-3;
+    rhoConvergence 1e-6;
+    specieConvergence 1e-5;
+    Yjconvergence 1e-5;
+    stepIterLevel true;
+    fileWrite false;
+}
+
+// ************************************************************************* //

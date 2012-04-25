@@ -1,0 +1,274 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dictionaryReplacement
+{
+    boundary
+    {
+    }
+
+    U
+    {
+        internalField   uniform (0 0 0);
+
+        boundaryField
+        {
+            outlet
+            {
+                type pressureInletOutletVelocity;
+                value uniform (0 0 0);
+            }
+            inlet
+            {
+                type flowRateInletVelocity;
+                flowRate 0.08;
+                value uniform (0 0 0);
+            }
+            "(.*wall.*|.*Wall.*|.*_to_.*)"
+            {
+                type fixedValue;
+                value uniform (0 0 0);
+            }
+        }
+    }
+
+    T
+    {
+        internalField   uniform 300;
+
+        boundaryField
+        {
+            ".*_to_.*"
+            {
+                type            compressible::turbulentTemperatureCoupledBaffleMixed;
+                neighbourFieldName T;
+                K               K;
+                value           uniform 300;
+            }
+            inlet
+            {
+                type   fixedValue;
+                value  uniform 300;
+            }
+            outlet
+            {
+                type inletOutlet;
+                inletValue uniform 300;
+                value uniform 300;
+            }
+            "(.*wall.*|.*Wall.*)"
+            {
+                type zeroGradient;
+                value uniform 300;
+            }
+        }
+    }
+
+    omega
+    {
+        internalField   uniform 1.;
+
+        boundaryField
+        {
+            inlet
+            {
+                type fixedValue;
+                value uniform 1.;
+            }
+            outlet
+            {
+                type inletOutlet;
+                inletValue uniform 1.;
+                value uniform 1.;
+            }
+            "(.*wall.*|.*Wall.*|.*_to_.*)"
+            {
+                type            compressible::omegaWallFunction;
+                value           uniform 1.;
+            }
+        }
+    }
+
+    k
+    {
+        internalField   uniform 1e-5;
+
+        boundaryField
+        {
+            inlet
+            {
+                type fixedValue;
+                value uniform 1e-5;
+            }
+            outlet
+            {
+                type inletOutlet;
+                inletValue uniform 1e-5;
+                value uniform 1e-5;
+            }
+            "(.*wall.*|.*Wall.*|.*_to_.*)"
+            {
+                type            compressible::kqRWallFunction;
+                value           uniform 1e-10;
+            }
+        }
+    }
+    H2O
+    {
+        internalField uniform 0;
+        boundaryField
+        {
+            inlet
+            {
+                type fixedValue;
+                value uniform 0;
+            }
+            outlet
+            {
+                type inletOutlet;
+                inletValue uniform 0;
+                value uniform 0;
+            }
+            "(.*wall.*|.*Wall.*|.*_to_.*)"
+            {
+                type zeroGradient;
+                value uniform 0;
+            }
+        }
+    }
+    O2
+    {
+        internalField uniform 0.21;
+        boundaryField
+        {
+            inlet
+            {
+                type fixedValue;
+                value uniform 0.21;
+            }
+            outlet
+            {
+                type inletOutlet;
+                inletValue uniform 0.21;
+                value uniform 0.21;
+            }
+            "(.*wall.*|.*Wall.*|.*_to_.*)"
+            {
+                type zeroGradient;
+                value uniform 0.21;
+            }
+        }
+    }
+    N2
+    {
+        internalField uniform 0.79;
+        boundaryField
+        {
+            inlet
+            {
+                type fixedValue;
+                value uniform 0.79;
+            }
+            outlet
+            {
+                type inletOutlet;
+                inletValue uniform 0.79;
+                value uniform 0.79;
+            }
+            "(.*wall.*|.*Wall.*|.*_to_.*)"
+            {
+                type zeroGradient;
+                value uniform 0.79;
+            }
+        }
+    }
+    p
+    {
+        internalField   uniform 101350;
+
+        boundaryField
+        {
+            inlet
+            {
+                type zeroGradient;
+                value uniform 101350;
+            }
+            outlet
+            {
+                type fixedValue;
+                value uniform 101350;
+            }
+            "(.*Wall.*|.*wall.*|.*_to_.*)"
+            {
+                type            zeroGradient;
+                value uniform 101350;
+            }
+        }
+    }
+    G
+    {
+        internalField   uniform 0;
+
+        boundaryField
+        {
+            "(inlet|.*_to_.*|.*wall.*|.*Wall.*)"
+            {
+                type MarshakRadiation;
+                T       T;
+                emissivity 1;
+                value uniform 0;
+            }
+            outlet
+            {
+                type zeroGradient;
+                value uniform 0;
+            }
+        }
+    }
+    mut
+    {
+        internalField uniform 0;
+        boundaryField
+        {
+            "(.*_to_.*|.*wall.*|.*Wall.*)"
+            {
+                type mutWallFunction;
+            }
+            "(inlet|outlet)"
+            {
+                type calculated;
+            }
+        }
+    }
+    alphat
+    {
+        internalField uniform 0;
+        boundaryField
+        {
+            "(.*wall.*|.*Wall.*|.*_to_.*)"
+            {
+                type alphatWallFunction;
+                value uniform 0;
+            }
+            "(inlet|outlet)"
+            {
+                type calculated;
+            }
+        }
+    }
+}
+
+// ************************************************************************* //

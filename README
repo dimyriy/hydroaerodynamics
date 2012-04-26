@@ -1,0 +1,3 @@
+./RunCase - preprocess mesh for running solver
+In current directory must be one .msh file. Only one!
+./Run - run solver with decomposition

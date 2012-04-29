@@ -3,6 +3,9 @@
     int nCorr(readInt(piso.lookup("nCorrectors")));
 
     int nNonOrthCorr = 0;
+    bool solveSpecies = false;
+    if (piso.found("solveSpecies"))
+        solveSpecies = Switch(piso.lookup("solveSpecies"))
     if (piso.found("nNonOrthogonalCorrectors"))
     {
         nNonOrthCorr = readInt(piso.lookup("nNonOrthogonalCorrectors"));

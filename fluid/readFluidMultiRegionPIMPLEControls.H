@@ -4,6 +4,8 @@
 
     int nNonOrthCorr =
         pimple.lookupOrDefault<int>("nNonOrthogonalCorrectors", 0);
+    bool solveSpecies =
+        pimple.lookupOrDefault<Switch>("solveSpecies",false);
     int debugLevel =
         pimple.lookupOrDefault<int>("debugLevel", 0);
     int infoLevel =

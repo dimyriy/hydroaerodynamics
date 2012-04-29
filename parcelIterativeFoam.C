@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     #include "solidRegionDiffusionNo.H"
     #include "setInitialMultiRegionDeltaT.H"
 
-    double uxres,spres,specieres,rhores,hsres,pres;
+    double uxres,spres,hsres,pres,specieres;
     int niter=0;
     bool wrt;
     cout.precision(5);
@@ -89,7 +89,10 @@ int main(int argc, char *argv[])
         if((niter==0)&&(Pstream::master())&&(fileWrite))
         {
             resid.open("residuals.plt");
-            resid<<"Variables=\"Iterations\",\"Velocity\",\"Energy\",\"Species\",\"Pressure\"";
+            if(solveSpecies)
+                resid<<"Variables=\"Iterations\",\"Velocity\",\"Energy\",\"Species\",\"Pressure\"";
+            else
+                resid<<"Variables=\"Iterations\",\"Velocity\",\"Energy\",\"Pressure\"";
         }
         runTime++;
 
@@ -115,16 +118,22 @@ int main(int argc, char *argv[])
         }
         if((Pstream::master())&&(stepIterLevel))
         {
-            printf("Iter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
+            if(solveSpecies)
+                printf("Iter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
+            else
+                printf("Iter	Residuals U	Residuals T	Residuals P\n-------------------------------------------------------------------\n");
         }
         for (int oCorr=0; oCorr<nOuterCorr; oCorr++)
         {
             niter++;
             if((Pstream::master())&&(stepIterLevel)&&(oCorr%30==0)&&(oCorr>=30))
             {
-                printf("-------------------------------------------------------------------\nIter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
+                if(solveSpecies)
+                    printf("-------------------------------------------------------------------\nIter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
+                else
+                    printf("-------------------------------------------------------------------\nIter	Residuals U	Residuals T	Residuals P\n-------------------------------------------------------------------\n");
             }
-            pres=0;uxres=0;spres=0;rhores=0;hsres=0,pres=0;
+            pres=0;uxres=0;spres=0;hsres=0,pres=0,specieres=0;
             forAll(fluidRegions, i)
             {
                 Info<< "\nSolving for fluid region "
@@ -147,14 +156,28 @@ int main(int argc, char *argv[])
             {
                 if(Pstream::master())
                 {
-                    printf("%d	%6.5e	%6.5e	%6.5e	%6.5e\n",oCorr,uxres,hsres,spres,pres);
+                    if(solveSpecies)
+                        printf("%d	%6.5e	%6.5e	%6.5e	%6.5e\n",oCorr,uxres,hsres,spres,pres);
+                    else
+                        printf("%d	%6.5e	%6.5e	%6.5e\n",oCorr,uxres,hsres,pres);
                 }
             }
             if(Pstream::master()&&(fileWrite))
-                    resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<spres<<"`	"<<pres;
-            if((uxres<=UxConvergence)&&(spres<=specieConvergence)&&(pres<=pConvergence))
             {
-                break;
+                    if(solveSpecies)
+                        resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<spres<<"`	"<<pres;
+                    else
+                        resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<pres;
+            }
+            if((uxres<=UxConvergence)&&(pres<=pConvergence)&&(hsres<=hsConvergence))
+            {
+                if(solveSpecies)
+                {
+                    if(spres<=specieConvergence)
+                        break;
+                }
+                else
+                    break;
             }
         }
         runTime.write();

@@ -40,7 +40,7 @@ Description
 
     rhoEqn.relax();
 
-    rhores=rhoEqn.solve().initialResidual();
+    rhoEqn.solve();
 }
 
 // ************************************************************************* //

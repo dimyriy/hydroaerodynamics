@@ -5,7 +5,7 @@
     int nNonOrthCorr = 0;
     bool solveSpecies = false;
     if (piso.found("solveSpecies"))
-        solveSpecies = Switch(piso.lookup("solveSpecies"))
+        solveSpecies = Switch(piso.lookup("solveSpecies"));
     if (piso.found("nNonOrthogonalCorrectors"))
     {
         nNonOrthCorr = readInt(piso.lookup("nNonOrthogonalCorrectors"));
@@ -41,6 +41,5 @@
     }
     double pConvergence = piso.lookupOrDefault<double>("pConvergence",1e-8);
     double UxConvergence = piso.lookupOrDefault<double>("UxConvergence",1e-8);
-    double rhoConvergence = piso.lookupOrDefault<double>("rhoConvergence",1e-8);
     double specieConvergence = piso.lookupOrDefault<double>("specieConvergence",1.0);
-    double hsConvergence = piso.lookupOrDefault<double>("hsConvergence",1e-8);
+    double hsConvergence = piso.lookupOrDefault<double>("hsConvergence",1.0);

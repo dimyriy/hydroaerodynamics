@@ -113,7 +113,10 @@ int main(int argc, char *argv[])
             cout<<"\nStep: "<<runTime.deltaT().value()<<"s; Time: "<<runTime.value()<<"s; CoNum: "<<CoNum<<"; Exec. Time: "<< runTime.elapsedCpuTime()<<"s";
             if(!fileWrite)
             {
-                cout<<"\n-------------------------------------------------------------------"<<nl;
+                if(solveSpecies)
+                    cout<<"\n-------------------------------------------------------------------"<<nl;
+                else
+                    cout<<"\n---------------------------------------------------"<<nl;
             }
         }
         if((Pstream::master())&&(stepIterLevel))
@@ -121,7 +124,7 @@ int main(int argc, char *argv[])
             if(solveSpecies)
                 printf("Iter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
             else
-                printf("Iter	Residuals U	Residuals T	Residuals P\n-------------------------------------------------------------------\n");
+                printf("Iter	Residuals U	Residuals T	Residuals P\n---------------------------------------------------\n");
         }
         for (int oCorr=0; oCorr<nOuterCorr; oCorr++)
         {
@@ -131,7 +134,7 @@ int main(int argc, char *argv[])
                 if(solveSpecies)
                     printf("-------------------------------------------------------------------\nIter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
                 else
-                    printf("-------------------------------------------------------------------\nIter	Residuals U	Residuals T	Residuals P\n-------------------------------------------------------------------\n");
+                    printf("---------------------------------------------------\nIter	Residuals U	Residuals T	Residuals P\n---------------------------------------------------\n");
             }
             pres=0;uxres=0;spres=0;hsres=0,pres=0,specieres=0;
             forAll(fluidRegions, i)

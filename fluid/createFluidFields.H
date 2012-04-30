@@ -2,7 +2,7 @@ PtrList<IOdictionary> chemistryProperties(fluidRegions.size());
 PtrList<psiChemistryModel> pChemistryFluid(fluidRegions.size());
 PtrList<DimensionedField<scalar, volMesh> > kappaFluid(fluidRegions.size());
 PtrList<volScalarField> rhoFluid(fluidRegions.size());
-//PtrList<volScalarField> KFluid(fluidRegions.size());
+PtrList<volScalarField> KFluid(fluidRegions.size());
 PtrList<volVectorField> UFluid(fluidRegions.size());
 PtrList<volScalarField> GFluid(fluidRegions.size());
 PtrList<surfaceScalarField> phiFluid(fluidRegions.size());
@@ -49,7 +49,6 @@ forAll(fluidRegions, i){
             pChemistryFluid[i].thermo().rho()
         )
     );
-    /*
     KFluid.set(
         i,
         new volScalarField(
@@ -63,7 +62,6 @@ forAll(fluidRegions, i){
             pChemistryFluid[i].thermo().Cp()*pChemistryFluid[i].thermo().alpha()
         )
     );
-    */
     UFluid.set(
         i,
         new volVectorField(

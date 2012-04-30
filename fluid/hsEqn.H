@@ -14,4 +14,5 @@
     hsres = hEqn.solve().initialResidual();
 
     thermo.correct();
+    radiation.correct();
 }

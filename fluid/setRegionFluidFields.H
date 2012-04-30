@@ -41,8 +41,8 @@
     );
     volScalarField DpDt(
         "DpDt",
-        fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p)
-//        fvc::ddt(p)
+//        fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p)
+        fvc::ddt(p)
     );
     multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields;
     forAll(Y,speciei)

@@ -4,6 +4,7 @@
 //    PtrList<hsCombustionThermo> thermoFluid(fluidRegions.size());
     PtrList<DimensionedField<scalar, volMesh> > kappaFluid(fluidRegions.size());
     PtrList<volScalarField> rhoFluid(fluidRegions.size());
+    PtrList<volScalarField> pFluid(fluidRegions.size());
     PtrList<volScalarField> KFluid(fluidRegions.size());
     PtrList<volVectorField> UFluid(fluidRegions.size());
     PtrList<volScalarField> GFluid(fluidRegions.size());
@@ -103,6 +104,22 @@
                 IOobject
                 (
                     "U",
+                    runTime.timeName(),
+                    fluidRegions[i],
+                    IOobject::MUST_READ,
+                    IOobject::AUTO_WRITE
+                ),
+                fluidRegions[i]
+            )
+        );
+        pFluid.set
+        (
+            i,
+            new volScalarField
+            (
+                IOobject
+                (
+                    "p",
                     runTime.timeName(),
                     fluidRegions[i],
                     IOobject::MUST_READ,

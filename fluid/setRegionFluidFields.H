@@ -23,7 +23,7 @@
     }
 
     volScalarField& rho = rhoFluid[i];
-    volScalarField& K = KFluid[i];
+//    volScalarField& K = KFluid[i];
     volVectorField& U = UFluid[i];
     surfaceScalarField& phi = phiFluid[i];
     PtrList<volScalarField>& Y = composition.Y();

@@ -28,8 +28,7 @@
     surfaceScalarField& phi = phiFluid[i];
     PtrList<volScalarField>& Y = composition.Y();
     compressible::turbulenceModel& turb = turbulence[i];
-//    volScalarField& p = thermo.p();
-    volScalarField& p = pFluid[i];
+    volScalarField& p = thermo.p();
     const volScalarField& psi = thermo.psi();
     volScalarField& hs = thermo.hs();
 

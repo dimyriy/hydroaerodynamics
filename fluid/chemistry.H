@@ -7,6 +7,7 @@
     );
 
     // turbulent time scale
+    turbulentReaction = false;
     if (turbulentReaction)
     {
         DimensionedField<scalar, volMesh> tk =

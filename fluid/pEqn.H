@@ -23,11 +23,13 @@ U = rUA*UEqn.H();
         );
         if((corr == nCorr-1)&&(nonOrth == nNonOrthCorr))
         {
+            pEqn.relax();
             pEqn.solve();
         }
         else
         {
             double prestemp = pres;
+            pEqn.relax();
             pres = pEqn.solve().initialResidual();
             if(fabs(prestemp)>fabs(pres))
                 pres = prestemp;
@@ -44,5 +46,5 @@ U = rUA*UEqn.H();
 
 U -= rUA*fvc::grad(p);
 U.correctBoundaryConditions();
-
 DpDt = fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p);
+//DpDt = fvc::ddt(p);

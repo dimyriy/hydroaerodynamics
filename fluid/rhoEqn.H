@@ -30,8 +30,7 @@ Description
 \*---------------------------------------------------------------------------*/
 
 {
-    fvScalarMatrix rhoEqn
-    (
+    fvScalarMatrix rhoEqn(
         fvm::ddt(rho)
         + fvc::div(phi)
      ==

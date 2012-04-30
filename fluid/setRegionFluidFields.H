@@ -1,6 +1,6 @@
+
     const fvMesh& mesh = fluidRegions[i];
     psiChemistryModel& chemistry = pChemistryFluid[i];
-//    thermoFluid[i] = chemistry.thermo();
     hsCombustionThermo& thermo = chemistry.thermo();
     Switch turbulentReaction(chemistryProperties[i].lookup("turbulentReaction"));
     dimensionedScalar Cmix("Cmix",dimless,1.0);

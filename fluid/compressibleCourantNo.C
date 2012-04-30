@@ -26,8 +26,7 @@ License
 #include "compressibleCourantNo.H"
 #include "fvc.H"
 
-Foam::scalar Foam::compressibleCourantNo
-(
+Foam::scalar Foam::compressibleCourantNo(
     const fvMesh& mesh,
     const Time& runTime,
     const volScalarField& rho,

@@ -1,8 +1,6 @@
 
-tmp<fv::convectionScheme<scalar> > mvConvection
-(
-    fv::convectionScheme<scalar>::New
-    (
+tmp<fv::convectionScheme<scalar> > mvConvection(
+    fv::convectionScheme<scalar>::New(
         mesh,
         fields,
         phi,
@@ -14,14 +12,11 @@ if(solveSpecies)
 {
     label inertIndex = -1;
     volScalarField Yt = 0.0*Y[0];
-    forAll(Y, j)
-    {
-        if (Y[j].name() != inertSpecie)
-        {
+    forAll(Y, j){
+        if (Y[j].name() != inertSpecie){
             volScalarField& Yj = Y[j];
             volScalarField YRESJ = Y[j];
-            solve
-            (
+            solve(
                 fvm::ddt(rho, Yj)
               + mvConvection->fvmDiv(phi, Yj)
               - fvm::laplacian(turb.muEff(), Yj)
@@ -35,8 +30,7 @@ if(solveSpecies)
             specieres=max(mag(Yj-YRESJ)/max(Yj,dimensionedScalar("1e-10",dimensionSet(0,0,0,0,0,0,0),1e-15))).value();
             YRESJ.clear();
         }
-        else
-        {
+        else{
             inertIndex = j;
         }
         spres=max(spres,specieres);

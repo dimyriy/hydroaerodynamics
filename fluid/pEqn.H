@@ -5,29 +5,23 @@ U = rUA*UEqn.H();
 
 
     phi =
-        fvc::interpolate(rho)
-       *(
-            (fvc::interpolate(U) & mesh.Sf())
+        fvc::interpolate(rho)*((fvc::interpolate(U) & mesh.Sf())
           + fvc::ddtPhiCorr(rUA, rho, U, phi)
         );
 
-    for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
-    {
-        fvScalarMatrix pEqn
-        (
+    for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++){
+        fvScalarMatrix pEqn(
             fvm::ddt(psi, p)
           + fvc::div(phi)
           - fvm::laplacian(rho*rUA, p)
          ==
             parcels.Srho()
         );
-        if((corr == nCorr-1)&&(nonOrth == nNonOrthCorr))
-        {
+        if((corr == nCorr-1)&&(nonOrth == nNonOrthCorr)){
             pEqn.relax();
             pEqn.solve();
         }
-        else
-        {
+        else{
             double prestemp = pres;
             pEqn.relax();
             pres = pEqn.solve().initialResidual();
@@ -35,8 +29,7 @@ U = rUA*UEqn.H();
                 pres = prestemp;
         }
 
-        if (nonOrth == nNonOrthCorr)
-        {
+        if (nonOrth == nNonOrthCorr){
             phi += pEqn.flux();
         }
     }

@@ -1,6 +1,5 @@
-{
-//    Info<< "Solving chemistry" << endl;
 
+{
     chemistry.solve
     (
         runTime.value() - runTime.deltaT().value(),

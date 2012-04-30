@@ -7,8 +7,6 @@
      ==
         DpDt
      +  parcels.Sh()
-     +  radiation.Shs(thermo)
-     +  chemistrySh
     );
 
     hEqn.relax();
@@ -16,6 +14,4 @@
     hsres = hEqn.solve().initialResidual();
 
     thermo.correct();
-
-    radiation.correct();
 }

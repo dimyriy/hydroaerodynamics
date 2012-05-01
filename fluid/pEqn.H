@@ -39,5 +39,5 @@ U = rUA*UEqn.H();
 
 U -= rUA*fvc::grad(p);
 U.correctBoundaryConditions();
-//DpDt = fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p);
-DpDt = fvc::ddt(p);
+DpDt = fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p);
+//DpDt = fvc::ddt(p);

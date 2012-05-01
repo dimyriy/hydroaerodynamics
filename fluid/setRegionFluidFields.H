@@ -26,9 +26,11 @@
     volScalarField& K = KFluid[i];
     volVectorField& U = UFluid[i];
     surfaceScalarField& phi = phiFluid[i];
+    phi = linearInterpolate(rho*U) & mesh.Sf();
     PtrList<volScalarField>& Y = composition.Y();
     compressible::turbulenceModel& turb = turbulence[i];
     volScalarField& p = thermo.p();
+    const volScalarField& T = thermo.T();
     const volScalarField& psi = thermo.psi();
     volScalarField& hs = thermo.hs();
 
@@ -40,8 +42,8 @@
     );
     volScalarField DpDt(
         "DpDt",
-//        fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p)
-        fvc::ddt(p)
+        fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p)
+//        fvc::ddt(p)
     );
     multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields;
     forAll(Y,speciei)

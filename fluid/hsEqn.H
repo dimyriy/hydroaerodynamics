@@ -6,6 +6,7 @@
       - fvm::laplacian(turb.alphaEff(), hs)
      ==
         DpDt
+     //+  radiation.Shs(thermo)
      +  parcels.Sh()
     );
 
@@ -15,4 +16,5 @@
 
     thermo.correct();
     radiation.correct();
+    Info<< "T gas min/max   = " << min(T).value() << ", "<< max(T).value() << endl;
 }

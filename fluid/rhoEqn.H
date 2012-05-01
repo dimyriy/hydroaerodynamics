@@ -37,8 +37,6 @@ Description
         parcels.Srho()
     );
 
-    rhoEqn.relax();
-
     rhoEqn.solve();
 }
 

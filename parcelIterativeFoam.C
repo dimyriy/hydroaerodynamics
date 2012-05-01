@@ -48,151 +48,106 @@ int main(int argc, char *argv[])
     ofstream resid;
     #include "setRootCase.H"
     #include "createTime.H"
-
     regionProperties rp(runTime);
-
     #include "createFluidMeshes.H"
     #include "createSolidMeshes.H"
-
     #include "createFluidFields.H"
     #include "createSolidFields.H"
-
     #include "initContinuityErrs.H"
-
     #include "readTimeControls.H"
     #include "readSolidTimeControls.H"
-
-
     #include "compressibleMultiRegionCourantNo.H"
-
     #include "solidRegionDiffusionNo.H"
     #include "setInitialMultiRegionDeltaT.H"
-
     double uxres,spres,hsres,pres,specieres;
     int niter=0;
     bool wrt;
     cout.precision(5);
-    while (runTime.run())
-    {
+    while (runTime.run()){
         #include "readTimeControls.H"
         #include "readSolidTimeControls.H"
-
         #include "readPIMPLEControls.H"
-
-
         lduMatrix::debug = debugLevel;
         Info.level = infoLevel;
         #include "compressibleMultiRegionCourantNo.H"
         #include "solidRegionDiffusionNo.H"
         #include "setMultiRegionDeltaT.H"
         wrt=fileWrite;
-        if((niter==0)&&(Pstream::master())&&(fileWrite))
-        {
+        if((niter==0)&&(Pstream::master())&&(fileWrite)){//write residual file headers
             resid.open("residuals.plt");
-            if(solveSpecies)
-                resid<<"Variables=\"Iterations\",\"Velocity\",\"Energy\",\"Species\",\"Pressure\"";
-            else
-                resid<<"Variables=\"Iterations\",\"Velocity\",\"Energy\",\"Pressure\"";
+            if(solveSpecies) resid<<"Variables=\"Iterations\",\"Velocity\",\"Energy\",\"Species\",\"Pressure\"";
+            else resid<<"Variables=\"Iterations\",\"Velocity\",\"Energy\",\"Pressure\"";
         }
         runTime++;
-
         Info<< "Time = " << runTime.timeName() << nl << endl;
-
-        if (nOuterCorr != 1)
-        {
-            forAll(fluidRegions, i)
-            {
+        if (nOuterCorr != 1){
+            forAll(fluidRegions, i){//set fluid fields
                 #include "setRegionFluidFields.H"
                 #include "storeOldFluidFields.H"
             }
         }
-
-        // --- PIMPLE loop
-        if((Pstream::master())&&((stepIterLevel)||(fileWrite)))
-        {
+        if((Pstream::master())&&((stepIterLevel)||(fileWrite))){//write header
             cout<<"\nStep: "<<runTime.deltaT().value()<<"s; Time: "<<runTime.value()<<"s; CoNum: "<<CoNum<<"; Exec. Time: "<< runTime.elapsedCpuTime()<<"s";
-            if(!fileWrite)
-            {
-                if(solveSpecies)
-                    cout<<"\n-------------------------------------------------------------------"<<nl;
-                else
-                    cout<<"\n---------------------------------------------------"<<nl;
+            if(!fileWrite){
+                if(solveSpecies) cout<<"\n-------------------------------------------------------------------"<<nl;
+                else cout<<"\n---------------------------------------------------"<<nl;
             }
         }
-        if((Pstream::master())&&(stepIterLevel))
-        {
-            if(solveSpecies)
-                printf("Iter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
-            else
-                printf("Iter	Residuals U	Residuals T	Residuals P\n---------------------------------------------------\n");
+        if((Pstream::master())&&(stepIterLevel)){//write header
+            if(solveSpecies) printf("Iter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
+            else printf("Iter	Residuals U	Residuals T	Residuals P\n---------------------------------------------------\n");
         }
-        for (int oCorr=0; oCorr<nOuterCorr; oCorr++)
-        {
+
+        // --- MAIN LOCAL ITERATIONS
+
+        for (int oCorr=0; oCorr<nOuterCorr; oCorr++){//local timestep iterations
             niter++;
-            if((Pstream::master())&&(stepIterLevel)&&(oCorr%30==0)&&(oCorr>=30))
-            {
-                if(solveSpecies)
-                    printf("-------------------------------------------------------------------\nIter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
-                else
-                    printf("---------------------------------------------------\nIter	Residuals U	Residuals T	Residuals P\n---------------------------------------------------\n");
+            if((Pstream::master())&&(stepIterLevel)&&(oCorr%30==0)&&(oCorr>=30)){//write header
+                if(solveSpecies) printf("-------------------------------------------------------------------\nIter	Residuals U	Residuals T	Residuals Y	Residuals P\n-------------------------------------------------------------------\n");
+                else printf("---------------------------------------------------\nIter	Residuals U	Residuals T	Residuals P\n---------------------------------------------------\n");
             }
             pres=0;uxres=0;spres=0;hsres=0,pres=0,specieres=0;
-            forAll(fluidRegions, i)
-            {
-                Info<< "\nSolving for fluid region "
-                    << fluidRegions[i].name() << nl;
+            forAll(fluidRegions, i){//solve for fluid region
+                Info<< "\nSolving for fluid region "<< fluidRegions[i].name() << nl;
                 #include "setRegionFluidFields.H"
                 #include "readFluidMultiRegionPIMPLEControls.H"
                 #include "solveFluid.H"
-                turb.correct();
-                rho=thermo.rho();
             }
-            forAll(solidRegions, i)
-            {
-                Info<< "\nSolving for solid region "
-                    << solidRegions[i].name() << endl;
+            forAll(solidRegions, i){//solve for solid region
+                Info<< "\nSolving for solid region "<< solidRegions[i].name() << endl;
                 #include "setRegionSolidFields.H"
                 #include "readSolidMultiRegionPIMPLEControls.H"
                 #include "solveSolid.H"
             }
-            if(stepIterLevel)
-            {
-                if(Pstream::master())
-                {
-                    if(solveSpecies)
-                        printf("%d	%6.5e	%6.5e	%6.5e	%6.5e\n",oCorr,uxres,hsres,spres,pres);
-                    else
-                        printf("%d	%6.5e	%6.5e	%6.5e\n",oCorr,uxres,hsres,pres);
+            if(stepIterLevel){//print residuals on screen
+                if(Pstream::master()){
+                    if(solveSpecies) printf("%d	%6.5e	%6.5e	%6.5e	%6.5e\n",oCorr,uxres,hsres,spres,pres);
+                    else printf("%d	%6.5e	%6.5e	%6.5e\n",oCorr,uxres,hsres,pres);
                 }
             }
-            if(Pstream::master()&&(fileWrite))
-            {
-                    if(solveSpecies)
-                        resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<spres<<"`	"<<pres;
-                    else
-                        resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<pres;
+            if(Pstream::master()&&(fileWrite)){//write residuals to file
+                    if(solveSpecies) resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<spres<<"`	"<<pres;
+                    else resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<pres;
             }
-            if((uxres<=UxConvergence)&&(pres<=pConvergence)&&(hsres<=hsConvergence))
-            {
-                if(solveSpecies)
-                {
-                    if(spres<=specieConvergence)
-                        break;
-                }
-                else
-                    break;
+            if((uxres<=UxConvergence)&&(pres<=pConvergence)&&(hsres<=hsConvergence)){
+                if(solveSpecies){ if(spres<=specieConvergence) break; }
+                else break;
             }
         }
+        /*
+        forAll(fluidRegions, i){
+            turbulence[i].correct();
+            rhoFluid[i]=pChemistryFluid[i].thermo().rho();
+        }
+        */
         runTime.write();
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
             << nl << endl;
     }
-    if((Pstream::master())&&(wrt))
-    {
+    if((Pstream::master())&&(wrt)){ //close file and write "End"
         resid.close();
-        if(Info.level==0)
-            cout<<"\nEnd.\n";
+        if(Info.level==0) cout<<"\nEnd.\n";
     }
     Info<<"\nEnd.\n"<<endl;
     return 0;

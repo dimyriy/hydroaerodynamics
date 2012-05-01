@@ -1,0 +1,6 @@
+This case should be run by the last version of parcelIterativeFoam solver, which can be found here:
+https://github.com/dimyriy/parcelIterativeFoam
+and new kOmegaSST model with curvature correction, which can be found here
+https://github.com/dimyriy/kOmegaCC
+
+If you want to share your own solution of that case, you have to correct .gitignore file.

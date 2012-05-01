@@ -1,5 +1,5 @@
 '''Solver case for multiregion conjugate heat transfer analysis of flows with disperse phase coupling'''<br/>
-This case should be run by the last version of '''parcelIterativeFoam''' solver, which can be found here:<br/>
+This case should be run with the last version of '''parcelIterativeFoam''' solver, which can be found here:<br/>
 https://github.com/dimyriy/parcelIterativeFoam<br/>
 and new '''kOmegaSST''' model with curvature correction, which can be found here<br/>
 https://github.com/dimyriy/kOmegaCC<br/>

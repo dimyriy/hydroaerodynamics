@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
                     if(solveSpecies) resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<spres<<"`	"<<pres;
                     else resid<<nl<<niter<<"	"<<uxres<<"	"<<hsres<<"	"<<pres;
             }
-            if((uxres<=UxConvergence)&&(pres<=pConvergence)&&(hsres<=hsConvergence)){
+            if((fabs(uxres)<=UxConvergence)&&(fabs(pres)<=pConvergence)&&(fabs(hsres)<=hsConvergence)){
                 if(solveSpecies){ if(spres<=specieConvergence) break; }
                 else break;
             }

@@ -11,7 +11,10 @@ PtrList<uniformDimensionedVectorField> gFluid(fluidRegions.size());
 PtrList<compressible::turbulenceModel> turbulence(fluidRegions.size());
 PtrList<thermoReactingCloud> parcelFluid(fluidRegions.size());
 PtrList<radiation::radiationModel> radiationFluid(fluidRegions.size());
+PtrList<volScalarField> DpDtFluid(fluidRegions.size());
+
 List<scalar> initialMassFluid(fluidRegions.size());
+
 forAll(fluidRegions, i){
     Info<< "*** Reading fluid mesh thermophysical properties for region "
         << fluidRegions[i].name() << nl << endl;
@@ -169,6 +172,19 @@ forAll(fluidRegions, i){
             ),
             fluidRegions[i],
             dimensionedScalar("chemistrySh",dimEnergy/dimTime/dimVolume, 0.0)
+        )
+    );
+    DpDtFluid.set(
+        i,
+        new volScalarField(
+            "DpDt",
+            fvc::DDt(
+                surfaceScalarField(
+                    "phiU",
+                    phiFluid[i]/fvc::interpolate(rhoFluid[i])
+                ),
+                pChemistryFluid[i].thermo().p()
+            )
         )
     );
     initialMassFluid[i] = fvc::domainIntegrate(rhoFluid[i]).value();

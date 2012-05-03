@@ -16,10 +16,11 @@ FoamFile
 
 PIMPLE
 {
-    nOuterCorrectors 10;
+    nOuterCorrectors 20;
     debugLevel       0;
     UxConvergence 1e-4;
-    pConvergence  1e-3;
+    pConvergence  1e-4;
+    hsConvergence 1e-4;
     specieConvergence 1e-5;
     stepIterLevel true;
     fileWrite false;

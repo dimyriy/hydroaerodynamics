@@ -33,9 +33,10 @@ dictionaryReplacement
             }
             inlet
             {
-                type flowRateInletVelocity;
-                flowRate 0.08;
-                value uniform (0 0 0);
+                //type flowRateInletVelocity;
+                type fixedValue;
+//                flowRate 0.08;
+                value uniform (-20 0 0);
             }
             "(.*wall.*|.*Wall.*|.*_to_.*)"
             {
@@ -96,7 +97,7 @@ dictionaryReplacement
             }
             "(.*wall.*|.*Wall.*|.*_to_.*)"
             {
-                type            compressible::omegaLogWallFunction;
+                type            compressible::omegaWallFunction;
                 value           uniform 1.;
             }
         }

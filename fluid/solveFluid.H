@@ -13,6 +13,6 @@ for (int corr=0; corr<nCorr; corr++)
     #include "hsEqn.H"
     #include "pEqn.H"
 }
-//rho = thermo.rho();
+rho = thermo.rho();
 turb.correct();
-//rho=thermo.rho();
+rho=thermo.rho();

@@ -1,0 +1,19 @@
+EXE_INC = \
+    -Ifluid \
+    -Isolid \
+    -Iinclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/turbulenceModels/compressible/turbulenceModel \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+EXE_LIBS = \
+    -lsolid \
+    -lfluid \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lbasicThermophysicalModels \
+    -lspecie \
+    -lcompressibleTurbulenceModel \
+    -lcompressibleRASModels \
+    -lcompressibleLESModels

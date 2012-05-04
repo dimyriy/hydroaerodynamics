@@ -1,6 +1,7 @@
 EXE_INC = \
     -Ifluid \
     -Isolid \
+    -IregionProperties \
     -Iinclude \
     -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
     -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \

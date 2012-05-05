@@ -76,7 +76,7 @@ solvers
         mergeLevels      1;
         maxIter          100;
     }
-    hs
+    "(h|hFinal)"
     {
         solver smoothSolver;
         smoother      GaussSeidel;
@@ -103,6 +103,7 @@ PIMPLE
     momentumPredictor   yes;
     nCorrectors         2;
     nNonOrthogonalCorrectors 2;
+    nSolidCorrections 5;
     solveSpecies false;
     UxConvergence 1e-4;
     pConvergence 1e-4;

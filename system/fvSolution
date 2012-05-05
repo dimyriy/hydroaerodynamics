@@ -25,6 +25,7 @@ PIMPLE
     stepIterLevel true;
     fileWrite false;
     solveSpecie false;
+    nSolidCorrections 5;
 }
 
 // ************************************************************************* //

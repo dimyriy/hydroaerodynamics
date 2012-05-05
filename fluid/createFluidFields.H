@@ -80,12 +80,28 @@ forAll(fluidRegions, i){
             )
         )
     );
-    Info<< "    Adding to turbulence\n" << endl;
+    Info<< "    Adding to phiFluid\n" << endl;
+    phiFluid.set
+    (
+        i,
+        new surfaceScalarField
+        (
+            IOobject
+            (
+                "phi",
+                runTime.timeName(),
+                fluidRegions[i],
+                IOobject::READ_IF_PRESENT,
+                IOobject::AUTO_WRITE
+            ),
+            linearInterpolate(rhoFluid[i]*UFluid[i])&fluidRegions[i].Sf()
+        )
+    );
+    Info<< "    Adding to turbulenceFluid\n" << endl;
     turbulenceFluid.set
     (
         i,
-        autoPtr<compressible::turbulenceModel>
-        (
+        autoPtr<compressible::turbulenceModel>(
             compressible::turbulenceModel::New
             (
                 rhoFluid[i],
@@ -97,20 +113,20 @@ forAll(fluidRegions, i){
     );
     Info<< "Creating field DpDt\n" << endl;
     DpDtFluid.set
+    (
+        i,
+        new volScalarField
         (
-            i,
-            new volScalarField
+            "DpDt",
+            fvc::DDt
             (
-                "DpDt",
-                fvc::DDt
+                surfaceScalarField
                 (
-                    surfaceScalarField
-                    (
-                        "phiU",
-                        phiFluid[i]/fvc::interpolate(rhoFluid[i])
-                    ),
-                    thermoFluid[i].p()
-                )
+                    "phiU",
+                    phiFluid[i]/fvc::interpolate(rhoFluid[i])
+                ),
+                thermoFluid[i].p()
             )
-        );
+        )
+    );
 }

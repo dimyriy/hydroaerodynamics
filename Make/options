@@ -16,5 +16,4 @@ EXE_LIBS = \
     -lspecie \
     -lcompressibleTurbulenceModel \
     -lcompressibleRASModels \
-    -lcompressibleLESModels \
-/opt/OpenFOAM-1.7.1/lib/linux64GccDPOpt/dummy/libPstream.so
+    -lcompressibleLESModels 

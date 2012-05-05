@@ -76,22 +76,21 @@ int main(int argc, char *argv[])
         runTime++;
 
         Info<< "Time = " << runTime.timeName() << nl << endl;
-
         forAll(fluidRegions, i){
-            #include "setRegionFluidFields.H"
-            p.storePrevIter();
-            rho.storePrevIter();
-        }
-        for(int solidCorrections=0; solidCorrections<nSolidCorrections; solidCorrections++){
-            forAll(solidRegions, i){
                 #include "setRegionFluidFields.H"
                 #include "readFluidMultiRegionPISOControls.H"
                 #include "solveFluid.H"
             }
-            forAll(fluidRegions, i){
+        for(int solidCorrections=0; solidCorrections<nSolidCorrections; solidCorrections++){
+            forAll(solidRegions, i){
                 #include "setRegionSolidFields.H"
                 #include "readSolidMultiRegionPISOControls.H"
                 #include "solveSolid.H"
+            }
+            forAll(fluidRegions, i){
+                #include "setRegionFluidFields.H"
+                #include "readFluidMultiRegionPISOControls.H"
+                #include "solidCorrections.H"
             }
         }
         runTime.write();

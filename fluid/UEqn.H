@@ -9,5 +9,5 @@
 
     if (momentumPredictor)
     {
-        solve(UEqn == -fvc::grad(p));
+        solve(UEqn() == -fvc::grad(p));
     }

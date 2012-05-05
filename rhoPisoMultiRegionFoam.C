@@ -32,9 +32,10 @@ Description
 #include "fvCFD.H"
 #include "basicPsiThermo.H"
 #include "turbulenceModel.H"
+#include "fixedGradientFvPatchFields.H"
 #include "regionProperties.H"
-#include "solidRegionDiffNo.H"
 #include "compressibleCourantNo.H"
+#include "solidRegionDiffNo.H"
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
@@ -81,7 +82,7 @@ int main(int argc, char *argv[])
             p.storePrevIter();
             rho.storePrevIter();
         }
-        for(solidCorrections=0; solidCorrection<nSolidCorrections; solidCorrections++){
+        for(int solidCorrections=0; solidCorrections<nSolidCorrections; solidCorrections++){
             forAll(solidRegions, i){
                 #include "setRegionFluidFields.H"
                 #include "readFluidMultiRegionPISOControls.H"

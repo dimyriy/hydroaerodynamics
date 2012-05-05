@@ -1,7 +1,7 @@
 rho = thermo.rho();
 
-volScalarField rUA = 1.0/UEqn.A();
-U = rUA*UEqn.H();
+volScalarField rUA = 1.0/UEqn().A();
+U = rUA*UEqn().H();
 
 if (transonic)
 {
@@ -60,10 +60,10 @@ else
 }
 
 #include "rhoEqn.H"
-#include "compressibleContinuityErrs.H"
+#include "compressibleContinuityErrors.H"
 
 U -= rUA*fvc::grad(p);
 U.correctBoundaryConditions();
 
 DpDt = fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p);
-K = thermoFluid[i].Cp()*turb.alphaEff();
+K = thermo.Cp()*turbulence.alphaEff();

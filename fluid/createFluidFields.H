@@ -1,4 +1,4 @@
-PtrList<basicPsiTermo> thermoFluid(fluidRegions.size());
+PtrList<basicPsiThermo> thermoFluid(fluidRegions.size());
 PtrList<volScalarField> rhoFluid(fluidRegions.size());
 PtrList<volScalarField> KFluid(fluidRegions.size());
 PtrList<volVectorField> UFluid(fluidRegions.size());

@@ -7,7 +7,7 @@
      ==
         DpDt
     );
-    if (oCorr == nOuterCorr-1)
+    if (solidCorrections == nSolidCorrections-1)
     {
         hEqn.relax();
         hEqn.solve(mesh.solver("hFinal"));

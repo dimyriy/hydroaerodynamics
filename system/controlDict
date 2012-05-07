@@ -29,7 +29,7 @@ deltaT          1e-3;
 
 writeControl    timeStep;
 
-writeInterval   1;
+writeInterval   50;
 
 purgeWrite      0;
 
@@ -45,12 +45,12 @@ timePrecision   6;
 
 runTimeModifiable yes;
 
-maxCo           50;
+maxCo           100;
 
 // Maximum diffusion number
 maxDi           100.0;
 
 
-adjustTimeStep  no;
+adjustTimeStep  yes;
 
 // ************************************************************************* //

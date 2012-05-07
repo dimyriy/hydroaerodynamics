@@ -16,7 +16,7 @@ FoamFile
 
 RASModel kOmegaSST;
 
-turbulence      off;
+turbulence      on;
 
 printCoeffs     on;
 

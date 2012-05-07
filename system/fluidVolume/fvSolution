@@ -37,31 +37,22 @@ solvers
         mergeLevels      1;
         maxIter          100;
     }
-/*
-    p
-    {
-        solver PCG;
-        preconditioner DIC;
-        tolerance 1e-6;
-        relTol 0;
-        maxIter 20;
-    }*/
     pFinal
     {
         $p;
         tolerance 1e-8;
         maxIter 100;
     }
-    /*
-    "(U|Yj)"
+    "(U|k|omega|R|h|hFinal)"
     {
         solver smoothSolver;
         smoother      DILUGaussSeidel;
-        nSweeps       20;
+        nSweeps       2;
         tolerance     1e-7;
         relTol        0;
         maxIter       20;
-    }*/
+    }
+    /*
     "(U|Yj|k|omega|R)"
     {
         solver GAMG;
@@ -84,9 +75,7 @@ solvers
         tolerance     1e-7;
         relTol        0;
         maxIter       5;
-    
     }
-    /*
     "(k|omega)"
     {
         solver PBiCG;
@@ -105,13 +94,11 @@ PISO
     nNonOrthogonalCorrectors 1;
     rhoMin rhoMin [1 -3 0 0 0 0 0] 1.1;
     rhoMax rhoMax [1 -3 0 0 0 0 0] 1.3;
-    TMin TMin [0 0 0 1 0 0 0] 290;
-    TMax TMax [0 0 0 1 0 0 0] 310;
 }
 relaxationFactors
 {
     p               0.3;
-    rho             0.05;
+    rho             0.9;
     U               0.7;
     k               0.7;
     epsilon         0.7;

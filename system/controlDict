@@ -25,7 +25,7 @@ stopAt          endTime;
 
 endTime         200;
 
-deltaT          1e-8;
+deltaT          1e-3;
 
 writeControl    timeStep;
 
@@ -45,12 +45,12 @@ timePrecision   6;
 
 runTimeModifiable yes;
 
-maxCo           0.7;
+maxCo           50;
 
 // Maximum diffusion number
-maxDi           1.0;
+maxDi           100.0;
 
 
-adjustTimeStep  yes;
+adjustTimeStep  no;
 
 // ************************************************************************* //

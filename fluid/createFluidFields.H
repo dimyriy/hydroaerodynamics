@@ -8,18 +8,11 @@ PtrList<compressible::turbulenceModel> turbulenceFluid(fluidRegions.size());
 PtrList<volScalarField> DpDtFluid(fluidRegions.size());
 PtrList<basicThermoCloud> parcelsFluid(fluidRegions.size());
 List<scalar> initialMassFluid(fluidRegions.size());
-
 forAll(fluidRegions, i){
     Info<< "\nReading thermophysical properties\n" << endl;
-//    thermoFluid.set(
-//        i,
-//        basicPsiThermo::New(fluidRegions[i]).ptr()
-//    );
     thermoFluid.set(
         i,
-        autoPtr<basicPsiThermo>(
-            basicThermo::New(fluidRegions[i])
-        )
+        basicPsiThermo::New(fluidRegions[i]).ptr()
     );
     Info<< "\nAdding to rhoFluid\n" << endl;
     rhoFluid.set(
@@ -38,8 +31,7 @@ forAll(fluidRegions, i){
         )
     );
     Info<< "\nAdding to KFluid\n" << endl;
-    KFluid.set
-    (
+    KFluid.set(
         i,
         new volScalarField
         (
@@ -55,8 +47,7 @@ forAll(fluidRegions, i){
         )
     );
     Info<< "\nReading field U\n" << endl;
-    UFluid.set
-    (
+    UFluid.set(
         i,
         new volVectorField
         (
@@ -72,8 +63,7 @@ forAll(fluidRegions, i){
         )
     );
     Info<< "    Adding to gFluid\n" << endl;
-    gFluid.set
-    (
+    gFluid.set(
         i,
         new uniformDimensionedVectorField
         (
@@ -88,8 +78,7 @@ forAll(fluidRegions, i){
         )
     );
     Info<< "    Adding to phiFluid\n" << endl;
-    phiFluid.set
-    (
+    phiFluid.set(
         i,
         new surfaceScalarField
         (
@@ -105,8 +94,7 @@ forAll(fluidRegions, i){
         )
     );
     Info<< "    Adding to turbulenceFluid\n" << endl;
-    turbulenceFluid.set
-    (
+    turbulenceFluid.set(
         i,
         autoPtr<compressible::turbulenceModel>(
             compressible::turbulenceModel::New
@@ -119,8 +107,7 @@ forAll(fluidRegions, i){
         ).ptr()
     );
     Info<< "Creating field DpDt\n" << endl;
-    DpDtFluid.set
-    (
+    DpDtFluid.set(
         i,
         new volScalarField
         (
@@ -136,8 +123,7 @@ forAll(fluidRegions, i){
             )
         )
     );
-    parcelsFluid.set
-    (
+    parcelsFluid.set(
         i,
         new basicThermoCloud(
             "basicThermoCloud1",

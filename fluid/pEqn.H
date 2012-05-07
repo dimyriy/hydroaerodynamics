@@ -59,7 +59,12 @@ else
     }
 }
 
-#include "rhoEqn.H"
+rho = thermo.rho();
+rho = max(rho, rhoMin);
+rho = min(rho, rhoMax);
+rho.relax();
+thermo.correct();
+Info<<"rho max/min :    "<<max(rho).value()<<" "<<min(rho).value()<<endl;
 #include "compressibleContinuityErrors.H"
 
 U -= rUA*fvc::grad(p);

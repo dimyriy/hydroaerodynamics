@@ -1,4 +1,6 @@
     const fvMesh& mesh = fluidRegions[i];
+    dimensionedScalar rhoMax(mesh.solutionDict().subDict("PISO").lookup("rhoMax"));
+    dimensionedScalar rhoMin(mesh.solutionDict().subDict("PISO").lookup("rhoMin"));
     basicPsiThermo& thermo = thermoFluid[i];
     volScalarField& rho = rhoFluid[i];
     volScalarField& K = KFluid[i];

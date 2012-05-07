@@ -9,6 +9,7 @@
     volScalarField& p = thermo.p();
     const volScalarField& psi = thermo.psi();
     volScalarField& h = thermo.h();
+    basicThermoCloud& parcels = parcelsFluid[i];
     const dimensionedScalar initialMass(
         "initialMass",
         dimMass,

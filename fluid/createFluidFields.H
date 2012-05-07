@@ -6,13 +6,20 @@ PtrList<surfaceScalarField> phiFluid(fluidRegions.size());
 PtrList<uniformDimensionedVectorField> gFluid(fluidRegions.size());
 PtrList<compressible::turbulenceModel> turbulenceFluid(fluidRegions.size());
 PtrList<volScalarField> DpDtFluid(fluidRegions.size());
+PtrList<basicThermoCloud> parcelsFluid(fluidRegions.size());
 List<scalar> initialMassFluid(fluidRegions.size());
 
 forAll(fluidRegions, i){
     Info<< "\nReading thermophysical properties\n" << endl;
+//    thermoFluid.set(
+//        i,
+//        basicPsiThermo::New(fluidRegions[i]).ptr()
+//    );
     thermoFluid.set(
         i,
-        basicPsiThermo::New(fluidRegions[i]).ptr()
+        autoPtr<basicPsiThermo>(
+            basicThermo::New(fluidRegions[i])
+        )
     );
     Info<< "\nAdding to rhoFluid\n" << endl;
     rhoFluid.set(
@@ -127,6 +134,17 @@ forAll(fluidRegions, i){
                 ),
                 thermoFluid[i].p()
             )
+        )
+    );
+    parcelsFluid.set
+    (
+        i,
+        new basicThermoCloud(
+            "basicThermoCloud1",
+            rhoFluid[i],
+            UFluid[i],
+            gFluid[i],
+            thermoFluid[i]
         )
     );
 }

@@ -40,10 +40,12 @@ Description
 #include "radiationModel.H"
 #include "basicThermoCloud.H"
 #include "thermophysicalFunction.H"
+#include "residuals.H"
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
 {
+    double resU, resP, resT, continuityEr;
     #include "setRootCase.H"
     #include "createTime.H"
 
@@ -64,7 +66,7 @@ int main(int argc, char *argv[])
     #include "compressibleMultiRegionCourantNo.H"
     #include "solidRegionDiffusionNo.H"
     #include "setInitialMultiRegionDeltaT.H"
-
+    cout.precision(5);
 
     while (runTime.run()){
         #include "readTimeControls.H"
@@ -75,9 +77,11 @@ int main(int argc, char *argv[])
         #include "compressibleMultiRegionCourantNo.H"
         #include "solidRegionDiffusionNo.H"
         #include "setMultiRegionDeltaT.H"
-
+        lduMatrix::debug = debugLevel;
+        Info.level = debugLevel;
         runTime++;
-
+        if(Pstream::master())
+            printHeader(resPrint, runTime.value(), runTime.deltaT().value());
         Info<< "Time = " << runTime.timeName() << nl << endl;
         forAll(fluidRegions, i){
                 #include "setRegionFluidFields.H"
@@ -97,9 +101,12 @@ int main(int argc, char *argv[])
                 #include "readFluidMultiRegionPISOControls.H"
                 #include "solidCorrections.H"
             }
+            if(Pstream::master())
+                printResiduals(resPrint, solidCorrections, resP, resU, resT);
         }
         runTime.write();
-
+        if(Pstream::master())
+            printFooter(resPrint, runTime.elapsedCpuTime(),runTime.elapsedClockTime(),continuityEr);
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
             << nl << endl;

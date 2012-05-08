@@ -62,7 +62,7 @@ if (adjustTimeStep)
         )
     );
 
-    Info<< "deltaT = " <<  runTime.deltaT().value() << endl;
+    Info<< "deltaT = " <<  runTime.deltaT().value();
 }
 
 // ************************************************************************* //

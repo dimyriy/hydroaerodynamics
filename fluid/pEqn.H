@@ -41,7 +41,7 @@ else{
           - fvm::laplacian(rho*rUA, p)
         );
 
-        pEqn.solve();
+        resP = pEqn.solve().initialResidual();
 
         if (nonOrth == nNonOrthCorr){ phi += pEqn.flux(); }
     }

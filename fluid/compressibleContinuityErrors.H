@@ -18,4 +18,5 @@
         << ", global = " << globalContErr
         << ", cumulative = " << cumulativeContErr[i]
         << endl;
+        continuityEr = cumulativeContErr[i];
 }

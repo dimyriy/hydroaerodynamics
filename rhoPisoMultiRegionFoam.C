@@ -25,7 +25,8 @@ Application
     rhoPisoFoam
 
 Description
-    Transient PISO solver for compressible, laminar or turbulent flow.
+    Transient PISO solver for conjugate fluid-solid analis of compressible,
+    laminar or turbulent flow with lagrangian parcels.
 
 \*---------------------------------------------------------------------------*/
 
@@ -65,8 +66,7 @@ int main(int argc, char *argv[])
     #include "setInitialMultiRegionDeltaT.H"
 
 
-    while (runTime.run())
-    {
+    while (runTime.run()){
         #include "readTimeControls.H"
         #include "readSolidTimeControls.H"
         #include "readPIMPLEControls.H"
@@ -81,6 +81,8 @@ int main(int argc, char *argv[])
         Info<< "Time = " << runTime.timeName() << nl << endl;
         forAll(fluidRegions, i){
                 #include "setRegionFluidFields.H"
+                rho.storePrevIter();
+                p.storePrevIter();
                 #include "readFluidMultiRegionPISOControls.H"
                 #include "solveFluid.H"
             }

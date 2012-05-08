@@ -3,10 +3,8 @@ rho = thermo.rho();
 volScalarField rUA = 1.0/UEqn().A();
 U = rUA*UEqn().H();
 
-if (transonic)
-{
-    surfaceScalarField phid
-    (
+if (transonic){
+    surfaceScalarField phid(
         "phid",
         fvc::interpolate(psi)
        *(
@@ -15,10 +13,8 @@ if (transonic)
         )
     );
 
-    for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
-    {
-        fvScalarMatrix pEqn
-        (
+    for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++){
+        fvScalarMatrix pEqn(
             fvm::ddt(psi, p)
           + fvm::div(phid, p)
           - fvm::laplacian(rho*rUA, p)
@@ -26,25 +22,20 @@ if (transonic)
 
         pEqn.solve();
 
-        if (nonOrth == nNonOrthCorr)
-        {
+        if (nonOrth == nNonOrthCorr){
             phi == pEqn.flux();
         }
     }
 }
-else
-{
+else{
     phi =
-        fvc::interpolate(rho)*
-        (
+        fvc::interpolate(rho)*(
             (fvc::interpolate(U) & mesh.Sf())
           + fvc::ddtPhiCorr(rUA, rho, U, phi)
         );
 
-    for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
-    {
-        fvScalarMatrix pEqn
-        (
+    for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++){
+        fvScalarMatrix pEqn(
             fvm::ddt(psi, p)
           + fvc::div(phi)
           - fvm::laplacian(rho*rUA, p)
@@ -52,10 +43,7 @@ else
 
         pEqn.solve();
 
-        if (nonOrth == nNonOrthCorr)
-        {
-            phi += pEqn.flux();
-        }
+        if (nonOrth == nNonOrthCorr){ phi += pEqn.flux(); }
     }
 }
 
@@ -63,6 +51,7 @@ rho = thermo.rho();
 rho = max(rho, rhoMin);
 rho = min(rho, rhoMax);
 rho.relax();
+#include "rhoEqn.H"
 thermo.correct();
 Info<<"rho max/min :    "<<max(rho).value()<<" "<<min(rho).value()<<endl;
 #include "compressibleContinuityErrors.H"

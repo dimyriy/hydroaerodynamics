@@ -1,9 +1,9 @@
 
 void printHeader(bool resPrint, double dt, double t){
     if(resPrint){
-        cout.precision(2);
+        cout.precision(1);
     	std::cout.setf(std::ios::scientific,std::ios::floatfield);
-        std::cout<<"; Flow Time: "<<t<<"s; "<<"dt: "<<dt<<"s";
+        std::cout<<"; Ph.Time: "<<t<<"s; "<<"dt: "<<dt<<"s";
         std::cout<<"\n-----------------------------------------------------------\n"
         	     <<  "|  Iter   |    Resid. P   |    Resid. U   |    Resid. T   |"
         	     <<"\n-----------------------------------------------------------\n";
@@ -19,12 +19,12 @@ void printResiduals(bool resPrint, int solidCorrections, double resP, double res
 
 void printFooter(bool resPrint, double elapsedCpuTime, double elapsedClockTime, double continuityEr){
     if(resPrint){
-        cout.precision(2);
+        cout.precision(1);
         std::cout.setf(std::ios::scientific,std::ios::floatfield);
         cout<<"-----------------------------------------------------------"
-    		<<"\nCont. err: "<<continuityEr;
+    		<<"\nErr: "<<continuityEr;
         std::cout.unsetf(std::ios::floatfield);
-        cout<<"; Ex. Time: " << elapsedClockTime << "s";
+        cout<<"; Ex.Time: " << elapsedClockTime << "s";
         cout.precision(5);
     }
 }

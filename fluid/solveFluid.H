@@ -1,3 +1,4 @@
+parcels.evolve();
 #include "rhoEqn.H"
 #include "UEqn.H"
 

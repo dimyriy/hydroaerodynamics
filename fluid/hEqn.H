@@ -1,15 +1,18 @@
 {
     fvScalarMatrix hEqn
     (
-        fvm::ddt(rho, h)
-      + fvm::div(phi, h)
+        fvm::div(phi, h)
+      - fvm::Sp(fvc::div(phi), h)
       - fvm::laplacian(turbulence.alphaEff(), h)
      ==
-        DpDt
+        fvc::div(phi/fvc::interpolate(rho), rho/psi, "div(U,p)")
+      - (rho/psi)*fvc::div(phi/fvc::interpolate(rho))
     );
+
     hEqn.relax();
-    hEqn.solve();
+
+    resT = eqnResidual = hEqn.solve().initialResidual();
+    maxResidual = max(eqnResidual, maxResidual);
+
     thermo.correct();
-    Info<< "Min/max T:" << min(thermo.T()).value() << ' '
-        << max(thermo.T()).value() << endl;
 }

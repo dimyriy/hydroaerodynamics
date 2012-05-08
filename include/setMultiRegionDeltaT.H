@@ -52,7 +52,7 @@ if (adjustTimeStep)
             min(maxDeltaTFluid, 1.0 + 0.1*maxDeltaTFluid),
             1.2
         );
-
+/*
     runTime.setDeltaT
     (
         min
@@ -63,6 +63,7 @@ if (adjustTimeStep)
     );
 
     Info<< "deltaT = " <<  runTime.deltaT().value() << endl;
+    */
 }
 
 // ************************************************************************* //

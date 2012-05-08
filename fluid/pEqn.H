@@ -1,30 +1,45 @@
 rho = thermo.rho();
+rho = max(rho, rhoMin);
+rho = min(rho, rhoMax);
+rho.relax();
 
 volScalarField rUA = 1.0/UEqn().A();
 U = rUA*UEqn().H();
+UEqn.clear();
+
+bool closedVolume = false;
 
 if (transonic)
 {
     surfaceScalarField phid
     (
         "phid",
-        fvc::interpolate(psi)
-       *(
-            (fvc::interpolate(U) & mesh.Sf())
-          + fvc::ddtPhiCorr(rUA, rho, U, phi)
-        )
+        fvc::interpolate(psi)*(fvc::interpolate(U) & mesh.Sf())
     );
 
     for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
     {
         fvScalarMatrix pEqn
         (
-            fvm::ddt(psi, p)
-          + fvm::div(phid, p)
+            fvm::div(phid, p)
           - fvm::laplacian(rho*rUA, p)
         );
 
-        pEqn.solve();
+        // Relax the pressure equation to ensure diagonal-dominance
+        pEqn.relax(mesh.relaxationFactor("pEqn"));
+
+        //pEqn.setReference(pRefCell, pRefValue);
+
+        // retain the residual from the first iteration
+        if (nonOrth == 0)
+        {
+            resP = eqnResidual = pEqn.solve().initialResidual();
+            maxResidual = max(eqnResidual, maxResidual);
+        }
+        else
+        {
+            pEqn.solve();
+        }
 
         if (nonOrth == nNonOrthCorr)
         {
@@ -34,41 +49,56 @@ if (transonic)
 }
 else
 {
-    phi =
-        fvc::interpolate(rho)*
-        (
-            (fvc::interpolate(U) & mesh.Sf())
-          + fvc::ddtPhiCorr(rUA, rho, U, phi)
-        );
+    phi = fvc::interpolate(rho)*(fvc::interpolate(U) & mesh.Sf());
+    closedVolume = adjustPhi(phi, U, p);
 
     for (int nonOrth=0; nonOrth<=nNonOrthCorr; nonOrth++)
     {
         fvScalarMatrix pEqn
         (
-            fvm::ddt(psi, p)
-          + fvc::div(phi)
-          - fvm::laplacian(rho*rUA, p)
+            fvm::laplacian(rho*rUA, p) == fvc::div(phi)
         );
 
-        pEqn.solve();
+        //pEqn.setReference(pRefCell, pRefValue);
+
+        // Retain the residual from the first iteration
+        if (nonOrth == 0)
+        {
+            eqnResidual = pEqn.solve().initialResidual();
+            maxResidual = max(eqnResidual, maxResidual);
+        }
+        else
+        {
+            pEqn.solve();
+        }
 
         if (nonOrth == nNonOrthCorr)
         {
-            phi += pEqn.flux();
+            phi -= pEqn.flux();
         }
     }
+}
+
+
+#include "continuityErrrs.H"
+
+// Explicitly relax pressure for momentum corrector
+p.relax();
+
+U -= rUA*fvc::grad(p);
+U.correctBoundaryConditions();
+
+// For closed-volume cases adjust the pressure and density levels
+// to obey overall mass continuity
+if (closedVolume)
+{
+    p += (initialMass - fvc::domainIntegrate(psi*p))
+        /fvc::domainIntegrate(psi);
 }
 
 rho = thermo.rho();
 rho = max(rho, rhoMin);
 rho = min(rho, rhoMax);
 rho.relax();
-thermo.correct();
-Info<<"rho max/min :    "<<max(rho).value()<<" "<<min(rho).value()<<endl;
-#include "compressibleContinuityErrors.H"
-
-U -= rUA*fvc::grad(p);
-U.correctBoundaryConditions();
-
-DpDt = fvc::DDt(surfaceScalarField("phiU", phi/fvc::interpolate(rho)), p);
-K = thermo.Cp()*turbulence.alphaEff();
+Info<< "rho max/min : " << max(rho).value() << " " << min(rho).value() << endl;
+Info<< "T max/min : " << max(thermo.T()).value() << " " << min(thermo.T()).value() << endl;

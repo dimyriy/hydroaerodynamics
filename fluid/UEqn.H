@@ -1,13 +1,16 @@
+    // Solve the Momentum equation
+
     tmp<fvVectorMatrix> UEqn
     (
-        fvm::ddt(rho, U)
-      + fvm::div(phi, U)
+        fvm::div(phi, U)
       + turbulence.divDevRhoReff(U)
     );
 
     UEqn().relax();
 
-    if (momentumPredictor)
-    {
-        solve(UEqn() == -fvc::grad(p));
-    }
+    resU = eqnResidual = solve
+    (
+        UEqn() == -fvc::grad(p)
+    ).initialResidual();
+
+    maxResidual = max(eqnResidual, maxResidual);

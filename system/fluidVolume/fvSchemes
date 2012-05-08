@@ -16,7 +16,8 @@ FoamFile
 
 ddtSchemes
 {
-    default Euler;
+//    default Euler;
+    default steadyState;
 }
 
 gradSchemes
@@ -40,10 +41,10 @@ divSchemes
 //--------------------------------------------------------
 //                     simple schemes
 //--------------------------------------------------------
-    div(phi,U)     Gauss upwind;
-    div(phi,k)     Gauss upwind;
-    div(phi,omega) Gauss upwind;
-    div(phi,h)      Gauss upwind;
+    div(phi,U)     Gauss linearUpwind leastSquares;
+    div(phi,k)     Gauss linearUpwind leastSquares;
+    div(phi,omega) Gauss linearUpwind leastSquares;
+    div(phi,h)      Gauss linearUpwind leastSquares;
 //====================================================================
 
 /*--------------------------------------------------------*\

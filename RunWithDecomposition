@@ -10,7 +10,7 @@ for i in fluidVolume solidVolume
 do
   decomposePar -region $i -latestTime
 done
-mpirun -np 4 rhoPisoMultiRegionFoam -parallel
+mpirun -np 4 rhoSimpleMultiRegionFoam -parallel
 for i in fluidVolume solidVolume
 do
    reconstructPar -region $i

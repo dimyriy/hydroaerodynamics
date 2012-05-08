@@ -16,9 +16,16 @@ FoamFile
 
 PIMPLE
 {
-    nSolidCorrections 5;
+    nSolidCorrections 2;
     debugLevel        1;
     resPrint       false;
+}
+SIMPLE
+{
+    nSolidCorrections 1;
+    debugLevel        1;
+    resPrint       false;
+    nNonOrthCorrections 1;
 }
 
 // ************************************************************************* //

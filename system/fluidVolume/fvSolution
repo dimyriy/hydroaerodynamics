@@ -29,7 +29,7 @@ solvers
         tolerance        1e-8;
         relTol           0;
         nPreSweeps       0;
-        nPostSweeps      1;
+        nPostSweeps      2;
         smoother         DICGaussSeidel;
         cacheAgglomeration true;
         nCellsInCoarsestLevel 10;
@@ -91,14 +91,14 @@ PISO
 {
     momentumPredictor   yes;
     nCorrectors         2;
-    nNonOrthogonalCorrectors 1;
+    nNonOrthogonalCorrectors 2;
     rhoMin rhoMin [1 -3 0 0 0 0 0] 1.1;
     rhoMax rhoMax [1 -3 0 0 0 0 0] 1.3;
 }
 relaxationFactors
 {
     p               0.3;
-    rho             0.9;
+    rho             0.05;
     U               0.7;
     k               0.7;
     epsilon         0.7;

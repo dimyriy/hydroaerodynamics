@@ -27,23 +27,41 @@ gradSchemes
 divSchemes
 {
     default         Gauss linear;
-//    default         Gauss upwind;
-//limited schemes
-    div(phi,U)     Gauss linearUpwindV cellMDLimited Gauss linear 1;
-    div(phi,k)     Gauss linearUpwind cellMDLimited Gauss linear 1;
-    div(phi,omega) Gauss linearUpwind cellMDLimited Gauss linear 1;
-    div(phi,h)      Gauss linearUpwind cellMDLimited Gauss linear 1;
-    div(R)          Gauss linear;
-    div(phi,Yi_h)   Gauss upwind;
-    div((muEff*dev2(grad(U).T()))) Gauss upwind phi 1.0;
 
-//skewCorrected schemes
+/*--------------------------------------------------------*\
+|                       limited schemes                    |
+\*--------------------------------------------------------*/
+//    div(phi,U)     Gauss linearUpwindV cellMDLimited Gauss linear 1;
+//    div(phi,k)     Gauss linearUpwind cellMDLimited Gauss linear 1;
+//    div(phi,omega) Gauss linearUpwind cellMDLimited Gauss linear 1;
+//    div(phi,h)      Gauss linearUpwind cellMDLimited Gauss linear 1;
+//====================================================================
+
+//--------------------------------------------------------
+//                     simple schemes
+//--------------------------------------------------------
+    div(phi,U)     Gauss upwind;
+    div(phi,k)     Gauss upwind;
+    div(phi,omega) Gauss upwind;
+    div(phi,h)      Gauss upwind;
+//====================================================================
+
+/*--------------------------------------------------------*\
+|                 skewCorrected schemes                    |
+\*--------------------------------------------------------*/
+
 //    div(phi,U)      Gauss skewCorrected limitedLinear 1.0;
 //    div(phiU,p)     Gauss skewCorrected limitedLinear 1.0;
 //    div(phi,k)      Gauss skewCorrected limitedLinear 1.0;
 //    div(phi,omega) Gauss skewCorrected limitedLinear 1.0;
 //    div(phi,R)      Gauss skewCorrected limitedLinear 1.0;
 //    div(phi,symm(grad(U))) Gauss skewCorrected limitedLinear 1.0;
+//====================================================================
+/*-----------------------------------------------------------*\
+|          This convection doesn't allow other schemes        |
+\*-----------------------------------------------------------*/
+    div(R)          Gauss linear;
+    div((muEff*dev2(grad(U).T()))) Gauss upwind phi 1.0;
 }
 
 laplacianSchemes
@@ -58,7 +76,7 @@ interpolationSchemes
 
 snGradSchemes
 {
-    default        limited 0.333;
+    default        limited 0.5;
 }
 
 fluxRequired

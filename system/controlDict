@@ -45,7 +45,7 @@ timePrecision   6;
 
 runTimeModifiable yes;
 
-maxCo           100;
+maxCo           10;
 
 // Maximum diffusion number
 maxDi           100.0;

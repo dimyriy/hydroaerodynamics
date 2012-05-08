@@ -17,8 +17,8 @@ FoamFile
 PIMPLE
 {
     nSolidCorrections 5;
-    debugLevel        0;
-    resPrint       true;
+    debugLevel        1;
+    resPrint       false;
 }
 
 // ************************************************************************* //

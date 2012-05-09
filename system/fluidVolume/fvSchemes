@@ -41,22 +41,22 @@ divSchemes
 //--------------------------------------------------------
 //                     simple schemes
 //--------------------------------------------------------
-    div(phi,U)     Gauss linearUpwind leastSquares;
-    div(phi,k)     Gauss linearUpwind leastSquares;
-    div(phi,omega) Gauss linearUpwind leastSquares;
-    div(phi,h)      Gauss linearUpwind leastSquares;
+//    div(phi,U)     Gauss linearUpwind leastSquares;
+//    div(phi,k)     Gauss linearUpwind leastSquares;
+//    div(phi,omega) Gauss linearUpwind leastSquares;
+//    div(phi,h)      Gauss linearUpwind leastSquares;
 //====================================================================
 
 /*--------------------------------------------------------*\
 |                 skewCorrected schemes                    |
 \*--------------------------------------------------------*/
 
-//    div(phi,U)      Gauss skewCorrected limitedLinear 1.0;
-//    div(phiU,p)     Gauss skewCorrected limitedLinear 1.0;
-//    div(phi,k)      Gauss skewCorrected limitedLinear 1.0;
-//    div(phi,omega) Gauss skewCorrected limitedLinear 1.0;
-//    div(phi,R)      Gauss skewCorrected limitedLinear 1.0;
-//    div(phi,symm(grad(U))) Gauss skewCorrected limitedLinear 1.0;
+    div(phi,U)      Gauss skewCorrected limitedLinear 1.0;
+    div(phiU,p)     Gauss skewCorrected limitedLinear 1.0;
+    div(phi,k)      Gauss skewCorrected limitedLinear 1.0;
+    div(phi,omega) Gauss skewCorrected limitedLinear 1.0;
+    div(phi,R)      Gauss skewCorrected limitedLinear 1.0;
+    div(phi,symm(grad(U))) Gauss skewCorrected limitedLinear 1.0;
 //====================================================================
 /*-----------------------------------------------------------*\
 |          This convection doesn't allow other schemes        |

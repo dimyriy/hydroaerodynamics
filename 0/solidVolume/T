@@ -23,7 +23,7 @@ boundaryField
 {
     solidWalls
     {
-        type            zeroGradient;
+        type            fixedValue;
         value           uniform 300;
     }
     solidVolume_to_fluidVolume

@@ -23,7 +23,7 @@ boundaryField
 {
     channelWalls
     {
-        type            zeroGradient;
+        type            fixedValue;
         value           uniform 300;
     }
     inlet
@@ -39,17 +39,17 @@ boundaryField
     }
     topWalls
     {
-        type            zeroGradient;
+        type            fixedValue;
         value           uniform 300;
     }
     outerWalls
     {
-        type            zeroGradient;
+        type            fixedValue;
         value           uniform 300;
     }
     tankWalls
     {
-        type            zeroGradient;
+        type            fixedValue;
         value           uniform 300;
     }
     fluidVolume_to_solidVolume

@@ -1,0 +1,21 @@
+#!/bin/sh
+rm -r 0*/solidVolume/{mut,alphat,k,p,U,omega,G,H2O,N2,O2}
+rm -r 0*/fluidVolume/{cp,K,rho}
+rm -rf processor*
+for i in fluidVolume solidVolume
+do
+    checkMesh -region $i
+done
+for i in fluidVolume solidVolume
+do
+  decomposePar -region $i -latestTime
+done
+mpirun -np 4 chtParcelSimpleFoam -parallel
+for i in fluidVolume solidVolume
+do
+   reconstructPar -region $i
+done
+for i in fluidVolume solidVolume
+do
+   paraFoam -touch -region $i
+done

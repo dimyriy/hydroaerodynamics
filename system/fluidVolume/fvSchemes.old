@@ -1,0 +1,70 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default Euler;
+}
+
+gradSchemes
+{
+    default         leastSquares;
+}
+
+divSchemes
+{
+    default         Gauss linear;
+//    default         Gauss upwind;
+//limited schemes
+    div(phi,U)     Gauss linearUpwindV cellMDLimited Gauss linear 1;
+    div(phi,k)     Gauss linearUpwind cellMDLimited Gauss linear 1;
+    div(phi,omega) Gauss linearUpwind cellMDLimited Gauss linear 1;
+    div(phi,h)      Gauss linearUpwind cellMDLimited Gauss linear 1;
+    div(R)          Gauss linear;
+    div(phi,Yi_h)   Gauss upwind;
+    div((muEff*dev2(grad(U).T()))) Gauss upwind phi 1.0;
+
+//skewCorrected schemes
+//    div(phi,U)      Gauss skewCorrected limitedLinear 1.0;
+//    div(phiU,p)     Gauss skewCorrected limitedLinear 1.0;
+//    div(phi,k)      Gauss skewCorrected limitedLinear 1.0;
+//    div(phi,omega) Gauss skewCorrected limitedLinear 1.0;
+//    div(phi,R)      Gauss skewCorrected limitedLinear 1.0;
+//    div(phi,symm(grad(U))) Gauss skewCorrected limitedLinear 1.0;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default         limitedLinear phi 1.0;
+}
+
+snGradSchemes
+{
+    default        limited 0.333;
+}
+
+fluxRequired
+{
+    default         no;
+    p_rgh;
+}
+
+// ************************************************************************* //

@@ -1,0 +1,13 @@
+#!/bin/sh
+rm -rf [0-9].*
+rm -rf [0-9]e*
+rm -rf [1-9]*
+rm -rf 0/fluidVolume
+rm -rf 0/solidVolume
+rm -rf constant/polyMesh
+rm -rf constant/fluidVolume/polyMesh
+rm -rf constant/solidVolume/polyMesh
+rm -f 0/cellToRegion
+rm -f constant/cellToRegion
+rm -rf processor*
+# -----------------------------------------------------------------------------

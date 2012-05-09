@@ -1,0 +1,17 @@
+'''Solver case for multiregion conjugate heat transfer analysis of flows with disperse phase coupling'''<br/>
+This case should be run with the last version of '''chtParcelSimpleFoam''' solver, which can be found here:<br/>
+https://github.com/dimyriy/chtParcelSimpleFoam<br/>
+and new '''kOmegaSST''' model with curvature correction, which can be found here<br/>
+https://github.com/dimyriy/kOmegaCC<br/>
+<br/>
+<hr/>
+<br/>
+'''''./ChangeDict''''' - remove decomposition Data and change boundary conditions according to changeDictionary files for each region<br/>
+'''''./Clean''''' - remove all solution data<br/>
+'''''./CompletelyClean''''' - remove all solution, decomposition and polyMesh data. (You have to run '''''RunCase''''' script after doing that)<br/>
+'''''./RunCase''''' - convert your ''.msh'' file ''(Note that it is important to have only one .msh file in this directory)'' to OpenFoam format and split mesh to a regions for multiregion running<br/>
+'''''./Run''''' - decompose case and run parcelIterativeFoam in parallel<br/>
+<br/>
+<hr/>
+<br/>
+If you want to share your own solution of that case, you have to correct ''.gitignore'' file (remove regular expressions with numbers).

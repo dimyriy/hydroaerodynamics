@@ -46,7 +46,7 @@ solvers
     "(U|k|omega|R|epsilon)"
     {
         solver smoothSolver;
-        smoother      GausSeidel;
+        smoother      GaussSeidel;
         nSweeps       2;
         tolerance     1e-12;
         relTol        0;

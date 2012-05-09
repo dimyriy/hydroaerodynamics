@@ -6,5 +6,5 @@ solid/solidRegionDiffNo.C
 
 chtParcelFoam.C
 
-EXE = $(FOAM_USER_APPBIN)/rhoDummyFoam
+EXE = $(FOAM_USER_APPBIN)/chtParcelFoam
 

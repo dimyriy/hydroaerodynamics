@@ -35,13 +35,13 @@ solvers
         nCellsInCoarsestLevel 10;
         agglomerator     faceAreaPair;
         mergeLevels      1;
-        maxIter          100;
+        maxIter          20;
     }
     pFinal
     {
         $p;
         tolerance 1e-8;
-        maxIter 100;
+        maxIter 20;
     }
     "(U|k|omega|R|epsilon)"
     {
@@ -66,8 +66,8 @@ solvers
 PIMPLE
 {
     momentumPredictor   yes;
-    nCorrectors         2;
-    nNonOrthogonalCorrectors 1;
+    nCorrectors         4;
+    nNonOrthogonalCorrectors 2;
 }
 relaxationFactors
 {

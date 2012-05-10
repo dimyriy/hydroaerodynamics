@@ -16,9 +16,10 @@ FoamFile
 
 PIMPLE
 {
-    nOuterCorrectors 1;
-    debugLevel       1;
-    resPrint         false;
+    nOuterCorrectors 10;
+    debugLevel       0;
+    printResidualsOnScreen true;
+    writeResidualsToFile true;
 }
 
 // ************************************************************************* //

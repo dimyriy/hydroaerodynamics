@@ -40,7 +40,7 @@
               - fvm::laplacian(rhorUAf, p_rgh)
             );
 
-            p_rghEqn.solve
+            resP = p_rghEqn.solve
             (
                 mesh.solver
                 (
@@ -53,7 +53,7 @@
                         )
                     )
                 )
-            );
+            ).initialResidual();
 
             if (nonOrth == nNonOrthCorr)
             {

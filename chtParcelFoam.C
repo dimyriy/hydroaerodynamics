@@ -25,8 +25,8 @@ Application
     chtMultiRegionFoam
 
 Description
-    Combination of heatConductionFoam and buoyantFoam for conjugate heat
-    transfer between a solid region and fluid region
+    Combination of heatConductionFoam, buoyantFoam and lagrangian parcel implementation for conjugate heat
+    transfer between a solid region and fluid region with lagrangian disperse phase
 
 \*---------------------------------------------------------------------------*/
 
@@ -39,7 +39,7 @@ Description
 #include "solidRegionDiffNo.H"
 #include "basicThermoCloud.H"
 #include "radiationModel.H"
-
+#include "residuals.H"
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
@@ -64,15 +64,26 @@ int main(int argc, char *argv[])
     #include "compressibleMultiRegionCourantNo.H"
     #include "solidRegionDiffusionNo.H"
     #include "setInitialMultiRegionDeltaT.H"
-
-
+    ofstream resFile;
+    int nIter=0;
+    double resP, resU, resT;
     while (runTime.run())
     {
         #include "readTimeControls.H"
         #include "readSolidTimeControls.H"
         #include "readPIMPLEControls.H"
-
-
+        lduMatrix::debug = dbgLvl;
+        Info.level = dbgLvl;
+        if((nIter==0)&&(Pstream::master())&&((onFile)||(onScreen)))
+        {
+            if(onFile){
+                resFile.open("residuals.plt");
+                resFile<<"Variables=\"Iterations\",\"Time\",\"Pressure\",\"Velocity\",\"Temperature\"";
+                resFile.close();
+            }
+            if(onScreen)
+                printResHeaders();
+        }
         #include "compressibleMultiRegionCourantNo.H"
         #include "solidRegionDiffusionNo.H"
         #include "setMultiRegionDeltaT.H"
@@ -111,6 +122,9 @@ int main(int argc, char *argv[])
                 #include "readSolidMultiRegionPIMPLEControls.H"
                 #include "solveSolid.H"
             }
+            nIter++;
+            if(Pstream::master())
+                printResiduals(onScreen, onFile, oCorr, runTime.value(), resP, resU, resT, resFile);
         }
 
         runTime.write();
@@ -119,9 +133,7 @@ int main(int argc, char *argv[])
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
             << nl << endl;
     }
-
     Info<< "End\n" << endl;
-
     return 0;
 }
 

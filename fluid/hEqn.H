@@ -12,12 +12,12 @@
     if (oCorr == nOuterCorr-1)
     {
         hEqn.relax();
-        hEqn.solve(mesh.solver("hFinal"));
+        resT = hEqn.solve(mesh.solver("hFinal")).initialResidual();
     }
     else
     {
         hEqn.relax();
-        hEqn.solve();
+        resT = hEqn.solve().initialResidual();
     }
 
     thermo.correct();

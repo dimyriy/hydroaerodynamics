@@ -11,7 +11,7 @@
 
     if (momentumPredictor)
     {
-         solve
+         resU = solve
          (
             UEqn()
          ==
@@ -22,5 +22,5 @@
                   - fvc::snGrad(p_rgh)
                 )*mesh.magSf()
             )
-        );
+        ).initialResidual();
     }

@@ -85,9 +85,12 @@ solvers
 PISO
 {
     nCorrectors     2;
-    nNonOrthogonalCorrectors 0;
+    nNonOrthogonalCorrectors 2;
     momentumPredictor yes;
 }
-
+residuals
+{
+    residualsPrint true;
+}
 
 // ************************************************************************* //

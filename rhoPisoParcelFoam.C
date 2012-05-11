@@ -55,18 +55,27 @@ int main(int argc, char *argv[])
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
     Info<< "\nStarting time loop\n" << endl;
-
+    double resU=0, resP=0, resT=0;
+    int nIter = 0;
     while (runTime.run())
     {
         #include "readTimeControls.H"
         #include "readPISOControls.H"
+        dictionary residualProperties = mesh.solutionDict().subDict("residuals");
+        bool residualsPrint = Switch(residualProperties.lookupOrDefault("residualsPrint", false));
+        if(residualsPrint)
+            Info.level = 0;
+        if(residualsPrint && Pstream::master()&&(nIter == 0 ||(nIter>30&&nIter%30==0)))
+            cout<<"-----------------------------------------------------------------\n|	Time	|	ResP	|	ResU	|	ResT	|\n-----------------------------------------------------------------\n";
+            nIter++;
         #include "compressibleCourantNo.H"
         #include "setDeltaT.H"
         runTime++;
 
         Info<< "Time = " << runTime.timeName() << nl << endl;
-        parcels.evolve();
         #include "rhoEqn.H"
+        parcels.evolve();
+        Info<<"Parcels evolved"<<endl;
         #include "UEqn.H"
 
         // --- PISO loop
@@ -79,6 +88,8 @@ int main(int argc, char *argv[])
         turbulence->correct();
 
         rho = thermo.rho();
+        if(Pstream::master()&&residualsPrint)
+            printf("| %4.3e	|	%2.1e	|	%2.1e	|	%2.1e	|\n", runTime.value(), resP, resU, resT);
 
         runTime.write();
 

@@ -24,7 +24,7 @@ if (transonic)
           - fvm::laplacian(rho*rUA, p)
         );
 
-        pEqn.solve();
+            resP = pEqn.solve().initialResidual();
 
         if (nonOrth == nNonOrthCorr)
         {
@@ -50,7 +50,7 @@ else
           - fvm::laplacian(rho*rUA, p)
         );
 
-        pEqn.solve();
+        resP = pEqn.solve().initialResidual();
 
         if (nonOrth == nNonOrthCorr)
         {

@@ -8,5 +8,5 @@
 
     if (momentumPredictor)
     {
-        solve(UEqn == -fvc::grad(p));
+        resU = solve(UEqn == -fvc::grad(p)).initialResidual();
     }

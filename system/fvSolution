@@ -17,7 +17,7 @@ FoamFile
 
 solvers
 {
-    rho
+    "(rho|G)"
     {
         solver          PCG;
         preconditioner  DIC;
@@ -90,7 +90,7 @@ PISO
 }
 residuals
 {
-    residualsPrint true;
+    residualsPrint false;
 }
 
 // ************************************************************************* //

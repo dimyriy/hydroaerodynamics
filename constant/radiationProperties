@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-radiation       off;
+radiation       on;
 
 radiationModel  none;
 
@@ -47,7 +47,7 @@ binaryAbsorptionEmissionCoeffs
         {
             cloudNames
             (
-                reactingCloud1
+                basicThermoCloud1
             );
         }
     }
@@ -59,7 +59,7 @@ cloudScatterCoeffs
 {
     cloudNames
     (
-        reactingCloud1
+        basicThermoCloud1
     );
 }
 

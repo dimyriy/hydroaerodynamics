@@ -15,32 +15,17 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-active          false;
-
+active          true;
 InjectionModel  PatchInjection;
-
-DragModel       SphereDrag;
-
+DragModel       none;
 DispersionModel none;
-
 PatchInteractionModel StandardWallInteraction;
-
 HeatTransferModel RanzMarshall;
-
-CompositionModel SinglePhaseMixture;
-
-PhaseChangeModel LiquidEvaporation;
-
 PostProcessingModel none;
-
-radiation       off;
-
+radiation       on;
 coupled         true;
-
 cellValueSourceCorrection on;
-
 parcelTypeId    1;
-
 constantProperties
 {
     rhoMin          rhoMin [ 1 -3 0 0 0 ] 1e-15;
@@ -55,9 +40,8 @@ constantProperties
     Pr              Pr [ 0 0 0 0 0 ] 0.7;
     Tvap            Tvap [ 0 0 0 1 0 ] 273;
     Tbp             Tvap [ 0 0 0 1 0 ] 373;
-    constantVolume  false;
+    constantVolume  true;
 }
-
 interpolationSchemes
 {
     rho             cell;
@@ -67,20 +51,17 @@ interpolationSchemes
     Cp              cell;
     p               cell;
 }
-
 integrationSchemes
 {
     U               Euler;
     T               Analytical;
 }
-
 particleForces
 {
     gravity         on;
     virtualMass     off;
     pressureGradient on;
 }
-
 ManualInjectionCoeffs
 {
     massTotal       massTotal [ 1 0 0 0 0 ] 1e-8;
@@ -101,12 +82,13 @@ ManualInjectionCoeffs
 PatchInjectionCoeffs
 {
     SOI             0;
-    massTotal       massTotal [ 1 0 0 0 0 ] 8;
+    massTotal       massTotal [ 1 0 0 0 0 ] 1e-2;
     parcelBasisType mass;
     patchName       inlet;
     duration        10000;
-    parcelsPerSecond 1e5;
+    parcelsPerSecond 1000;
     U0              (-20 0 0);
+    T0              300;
     volumeFlowRate  constant 0.1;
     parcelPDF
     {
@@ -140,32 +122,9 @@ StandardWallInteractionCoeffs
 {
     type            rebound;
 }
-
 RanzMarshallCoeffs
 {
-    // thermal shielding
     BirdCorrection  true;
-}
-
-SinglePhaseMixtureCoeffs
-{
-    phases
-    (
-        liquid
-        {
-            H2O 1;
-        }
-    );
-}
-
-LiquidEvaporationCoeffs
-{
-    enthalpyTransfer enthalpyDifference;
-
-    activeLiquids
-    (
-        H2O
-    );
 }
 
 // ************************************************************************* //

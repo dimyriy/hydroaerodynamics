@@ -3,3 +3,5 @@
 [0-9]e*
 processor*
 constant/polyMesh
+tecplot*
+Tecplot*

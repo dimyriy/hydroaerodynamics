@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-RASModel        kOmegaSST;
+RASModel        kOmegaCC;
 
 turbulence      on;
 

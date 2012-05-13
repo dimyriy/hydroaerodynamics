@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-active          true;
+active          false;
 InjectionModel  PatchInjection;
 DragModel       none;
 DispersionModel none;

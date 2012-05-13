@@ -1,0 +1,3 @@
+Unsteady solver for flows of compressible fluid with lagrangian parcels and radiation model.
+Default branch allow you to compile this solver under openfoam171.
+You can switch to openfoam210 branch in solver directory for compile this under 2.1.0 OpenFOAM version.

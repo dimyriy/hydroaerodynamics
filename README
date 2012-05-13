@@ -1,6 +1,6 @@
 Case for rhoPisoParcelFoam and rhoSimpleParcelFoam openfoam solvers.
 rhoPisoParcelFoam: https://www.github.com/dimyriy/rhoPisoParcelFoam
-rhoPisoParcelFoam: https://www.github.com/dimyriy/rhoSimpleParcelFoam
+rhoSimpleParcelFoam: https://www.github.com/dimyriy/rhoSimpleParcelFoam
 Default branch (master) allow you to solve this case with openfoam171 versions of solvers.
 You can switch to branch openfoam210 for solving with openfoam210 versions.
 Also this case allow you to use kOmegaSST turbulence model with curvature correction (which also allow you to solving in openfoam171 and openfoam210 versions).

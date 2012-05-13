@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     rhoPisoFoam;
+application     rhoPisoParcelFoam;
 
 startFrom       latestTime;
 

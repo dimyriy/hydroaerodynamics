@@ -124,6 +124,7 @@ residuals
 {
     residualsPrint false;
 }
+/*
 relaxationFactors  //switch this steady<-->unnsteady
 {
     rho     0.1;
@@ -133,6 +134,6 @@ relaxationFactors  //switch this steady<-->unnsteady
     pFinal  0.5;
     k       0.5;
     omega   0.5;
-}
+}*/
 
 // ************************************************************************* //

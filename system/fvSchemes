@@ -17,7 +17,7 @@ FoamFile
 
 ddtSchemes
 {
-    default         Euler;
+    default         steadyState;    //switch this steady<-->unsteady
 }
 
 gradSchemes
@@ -40,6 +40,7 @@ divSchemes
     div((rho*R))    Gauss linear;
     div(R)          Gauss linear;
     div(U)          Gauss linear;
+    div(U,p)        Gauss linear;
     div((muEff*dev2(grad(U).T()))) Gauss linear;
 }
 

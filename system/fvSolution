@@ -21,15 +21,15 @@ solvers
     {
         solver          PCG;
         preconditioner  DIC;
-        tolerance       1e-05;
+        tolerance       1e-9;
         relTol          0;
     }
-
+/*
     U
     {
         solver          PBiCG;
         preconditioner  DILU;
-        tolerance       1e-05;
+        tolerance       1e-9;
         relTol          0;
     }
 
@@ -37,7 +37,7 @@ solvers
     {
         solver          PCG;
         preconditioner  DIC;
-        tolerance       1e-06;
+        tolerance       1e-09;
         relTol          0;
     }
 
@@ -45,7 +45,7 @@ solvers
     {
         solver          PBiCG;
         preconditioner  DILU;
-        tolerance       1e-05;
+        tolerance       1e-09;
         relTol          0;
     }
 
@@ -53,7 +53,7 @@ solvers
     {
         solver          PBiCG;
         preconditioner  DILU;
-        tolerance       1e-05;
+        tolerance       1e-09;
         relTol          0;
     }
 
@@ -61,7 +61,7 @@ solvers
     {
         solver          PBiCG;
         preconditioner  DILU;
-        tolerance       1e-05;
+        tolerance       1e-09;
         relTol          0;
     }
 
@@ -69,7 +69,7 @@ solvers
     {
         solver          PBiCG;
         preconditioner  DILU;
-        tolerance       1e-05;
+        tolerance       1e-09;
         relTol          0;
     }
 
@@ -77,8 +77,32 @@ solvers
     {
         solver          PBiCG;
         preconditioner  DILU;
-        tolerance       1e-05;
+        tolerance       1e-09;
         relTol          0;
+    }
+*/
+    "(p|pFinal)"
+    {
+        solver GAMG;
+        smoother GaussSeidel;
+        nPreSweeps 0;
+        nPostSweeps 1;
+        tolerance 1e-09;
+        relTol 0;
+        nCellsInCoarsestLevel 10;
+        cacheAgglomeration true;
+        agglomerator faceAreaPair;
+        mergeLevels 1;
+        maxIter 15;
+    }
+    "(U|k|omega|epsilon|h|R)"
+    {
+        solver      smoothSolver;
+        smoother    GaussSeidel;
+        nSweeps     2;
+        relTol      0;
+        tolerance   1e-09;
+        maxIter     20;
     }
 }
 
@@ -88,9 +112,27 @@ PISO
     nNonOrthogonalCorrectors 2;
     momentumPredictor yes;
 }
+SIMPLE
+{
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 2;
+    momentumPredictor yes;
+    rhoMin rhoMin [1 -3 0 0 0 0 0] 1.0;
+    rhoMax rhoMax [1 -3 0 0 0 0 0] 2.0;
+}
 residuals
 {
     residualsPrint false;
+}
+relaxationFactors  //switch this steady<-->unnsteady
+{
+    rho     0.1;
+    p       0.7;
+    U       0.3;
+    h       0.5;
+    pFinal  0.5;
+    k       0.5;
+    omega   0.5;
 }
 
 // ************************************************************************* //

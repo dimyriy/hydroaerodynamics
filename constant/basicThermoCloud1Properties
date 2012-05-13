@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-active          false;
+active          true;
 InjectionModel  PatchInjection;
 DragModel       none;
 DispersionModel none;
@@ -82,10 +82,10 @@ ManualInjectionCoeffs
 PatchInjectionCoeffs
 {
     SOI             0;
-    massTotal       massTotal [ 1 0 0 0 0 ] 1e-2;
+    massTotal       massTotal [ 1 0 0 0 0 ] 8;
     parcelBasisType mass;
     patchName       inlet;
-    duration        10000;
+    duration        100000;
     parcelsPerSecond 1000;
     U0              (-20 0 0);
     T0              300;

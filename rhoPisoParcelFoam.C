@@ -75,7 +75,6 @@ int main(int argc, char *argv[])
         Info<< "Time = " << runTime.timeName() << nl << endl;
         #include "rhoEqn.H"
         parcels.evolve();
-        Info<<"Parcels evolved"<<endl;
         #include "UEqn.H"
 
         // --- PISO loop

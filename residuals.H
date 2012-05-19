@@ -1,5 +1,5 @@
 
-void printHeader(bool resPrint, double dt, double t){
+void printHeader(bool resPrint, double t, double dt){
     if(resPrint){
         cout.precision(1);
     	std::cout.setf(std::ios::scientific,std::ios::floatfield);
@@ -23,7 +23,7 @@ void printFooter(bool resPrint, double elapsedCpuTime, double elapsedClockTime, 
         std::cout.setf(std::ios::scientific,std::ios::floatfield);
         cout<<"-----------------------------------------------------------"
     		<<"\nErr: "<<continuityEr;
-        std::cout.unsetf(std::ios::floatfield);
+        std::cout.setf(std::ios::fixed,std::ios::floatfield);
         cout<<"; Ex.Time: " << elapsedClockTime << "s";
         cout.precision(5);
     }

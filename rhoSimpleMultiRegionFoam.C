@@ -82,7 +82,6 @@ int main(int argc, char *argv[])
         runTime++;
         lduMatrix::debug = debugLevel;
         Info.level = debugLevel;
-        runTime++;
         if(Pstream::master())
             printHeader(resPrint, runTime.value(), runTime.deltaT().value());
         Info<< "Time = " << runTime.timeName() << nl << endl;
@@ -92,15 +91,15 @@ int main(int argc, char *argv[])
                 rho.storePrevIter();
             }
         for(int solidCorrections=0; solidCorrections<nSolidCorrections; solidCorrections++){
-            forAll(solidRegions, i){
-                #include "setRegionSolidFields.H"
-                #include "readSolidMultiRegionPISOControls.H"
-                #include "solveSolid.H"
-            }
             forAll(fluidRegions, i){
                 #include "setRegionFluidFields.H"
                 #include "solveFluid.H"
                 #include "convergenceCheck.H"
+            }
+            forAll(solidRegions, i){
+                #include "setRegionSolidFields.H"
+                #include "readSolidMultiRegionPISOControls.H"
+                #include "solveSolid.H"
             }
             if(Pstream::master())
                 printResiduals(resPrint, solidCorrections, resP, resU, resT);

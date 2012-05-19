@@ -6,7 +6,6 @@ rho.relax();
 volScalarField rUA = 1.0/UEqn().A();
 U = rUA*UEqn().H();
 UEqn.clear();
-
 bool closedVolume = false;
 
 if (transonic)
@@ -38,7 +37,7 @@ if (transonic)
         }
         else
         {
-            pEqn.solve();
+            resP = pEqn.solve().initialResidual();
         }
 
         if (nonOrth == nNonOrthCorr)
@@ -64,12 +63,12 @@ else
         // Retain the residual from the first iteration
         if (nonOrth == 0)
         {
-            eqnResidual = pEqn.solve().initialResidual();
+            resP = eqnResidual = pEqn.solve().initialResidual();
             maxResidual = max(eqnResidual, maxResidual);
         }
         else
         {
-            pEqn.solve();
+            resP = pEqn.solve().initialResidual();
         }
 
         if (nonOrth == nNonOrthCorr)

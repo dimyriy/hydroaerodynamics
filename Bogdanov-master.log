@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.8)  15 MAY 2012 04:28
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.8)  17 MAY 2012 14:21
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{"/home/dimyriy/Master/tex/Bogdanov-master.tex"}
@@ -1303,108 +1303,108 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 ! Misplaced \noalign.
 \hline ->\noalign 
                   {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
-l.48 }
+l.49 }
       %offrame
 I expect to see \noalign only after the \cr of
 an alignment. Proceed, and I'll ignore this case.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 48.
+LaTeX Font Info:    Try loading font information for U+msa on input line 49.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 48.
+LaTeX Font Info:    Try loading font information for U+msb on input line 49.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-<Geometry.png, id=91, 296.10625pt x 492.84125pt>
+<Geometry.png, id=98, 296.10625pt x 492.84125pt>
 File: Geometry.png Graphic file (type png)
  <use Geometry.png> [3
 
  </home/dimyriy/Master/tex/Geometry.png (PNG copy)>]
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\CYRO' on input line 49.
+(hyperref)                removing `\CYRO' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrp' on input line 49.
+(hyperref)                removing `\cyrp' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrr' on input line 49.
+(hyperref)                removing `\cyrr' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyre' on input line 49.
+(hyperref)                removing `\cyre' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrd' on input line 49.
+(hyperref)                removing `\cyrd' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyre' on input line 49.
+(hyperref)                removing `\cyre' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrl' on input line 49.
+(hyperref)                removing `\cyrl' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrya' on input line 49.
+(hyperref)                removing `\cyrya' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyryu' on input line 49.
+(hyperref)                removing `\cyryu' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrshch' on input line 49.
+(hyperref)                removing `\cyrshch' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyri' on input line 49.
+(hyperref)                removing `\cyri' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyre' on input line 49.
+(hyperref)                removing `\cyre' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyru' on input line 49.
+(hyperref)                removing `\cyru' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrr' on input line 49.
+(hyperref)                removing `\cyrr' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyra' on input line 49.
+(hyperref)                removing `\cyra' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrv' on input line 49.
+(hyperref)                removing `\cyrv' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrn' on input line 49.
+(hyperref)                removing `\cyrn' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyre' on input line 49.
+(hyperref)                removing `\cyre' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrn' on input line 49.
+(hyperref)                removing `\cyrn' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyri' on input line 49.
+(hyperref)                removing `\cyri' on input line 50.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrya' on input line 49.
+(hyperref)                removing `\cyrya' on input line 50.
 
 [4
 
@@ -1412,154 +1412,277 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 
 ] [6
 
-]
+] <particleJasak.png, id=213, 827.09pt x 622.325pt>
+File: particleJasak.png Graphic file (type png)
+
+<use particleJasak.png> [7
+
+ </home/dimyriy/Master/tex/particleJasak.png (PNG copy)>]
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\CYRV' on input line 113.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyre' on input line 113.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrr' on input line 113.
+(hyperref)                removing `\CYRV' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyri' on input line 113.
+(hyperref)                removing `\cyre' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrf' on input line 113.
+(hyperref)                removing `\cyrr' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyri' on input line 113.
+(hyperref)                removing `\cyri' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrk' on input line 113.
+(hyperref)                removing `\cyrf' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyra' on input line 113.
+(hyperref)                removing `\cyri' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrc' on input line 113.
+(hyperref)                removing `\cyrk' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyri' on input line 113.
+(hyperref)                removing `\cyra' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrya' on input line 113.
+(hyperref)                removing `\cyrc' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrm' on input line 113.
+(hyperref)                removing `\cyri' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyro' on input line 113.
+(hyperref)                removing `\cyrya' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrd' on input line 113.
+(hyperref)                removing `\cyrm' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyre' on input line 113.
+(hyperref)                removing `\cyro' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrl' on input line 113.
+(hyperref)                removing `\cyrd' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyri' on input line 113.
+(hyperref)                removing `\cyre' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrt' on input line 113.
+(hyperref)                removing `\cyrl' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyru' on input line 113.
+(hyperref)                removing `\cyri' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrr' on input line 113.
+(hyperref)                removing `\cyrt' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrb' on input line 113.
+(hyperref)                removing `\cyru' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyru' on input line 113.
+(hyperref)                removing `\cyrr' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrl' on input line 113.
+(hyperref)                removing `\cyrb' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyre' on input line 113.
+(hyperref)                removing `\cyru' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrn' on input line 113.
+(hyperref)                removing `\cyrl' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrt' on input line 113.
+(hyperref)                removing `\cyre' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrn' on input line 113.
+(hyperref)                removing `\cyrn' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyro' on input line 113.
+(hyperref)                removing `\cyrt' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrs' on input line 113.
+(hyperref)                removing `\cyrn' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyrt' on input line 113.
+(hyperref)                removing `\cyro' on input line 173.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\cyri' on input line 113.
+(hyperref)                removing `\cyrs' on input line 173.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyrt' on input line 173.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyri' on input line 173.
 
 ! Misplaced \noalign.
 \hline ->\noalign 
                   {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
-l.145 }
+l.207 }
        
 I expect to see \noalign only after the \cr of
 an alignment. Proceed, and I'll ignore this case.
 
 
-Overfull \hbox (4.28458pt too wide) in paragraph at lines 145--145
+Overfull \hbox (25.90866pt too wide) in paragraph at lines 207--207
  [] 
  []
 
-<swirlMesh.png, id=203, 745.78625pt x 662.475pt>
+<swirlMesh.png, id=241, 745.78625pt x 662.475pt>
 File: swirlMesh.png Graphic file (type png)
  <use swirlMesh.png>
-Overfull \hbox (27.6342pt too wide) in paragraph at lines 145--145
+Overfull \hbox (27.6342pt too wide) in paragraph at lines 207--207
  [] 
  []
 
-[7
+[8
 
  </home/dimyriy/Master/tex/swirlMesh.png (PNG copy)>]
+! Undefined control sequence.
+<argument> \0
+             .45\linewidth 
+l.223 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<testPathlines.png, id=269, 766.865pt x 616.3025pt>
+File: testPathlines.png Graphic file (type png)
+ <use testPathlines.png>
+! Undefined control sequence.
+<argument> \0
+             .45\linewidth 
+l.223 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \0
+             .45\linewidth 
+l.223 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+<Comparison.png, id=270, 745.78625pt x 662.475pt>
+File: Comparison.png Graphic file (type png)
+ <use Comparison.png>
+! Undefined control sequence.
+<argument> \0
+             .45\linewidth 
+l.223 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[9
+
+ </home/dimyriy/Master/tex/testPathlines.png (PNG copy)> </home/dimyriy/Master/
+tex/Comparison.png (PNG copy)>]
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\CYRR' on input line 224.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyre' on input line 224.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyrsh' on input line 224.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyre' on input line 224.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyrn' on input line 224.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyri' on input line 224.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\cyre' on input line 224.
+
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.247 }}
+        
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+
+Overfull \hbox (12.1013pt too wide) in paragraph at lines 247--247
+ [] 
+ []
+
+<Mesh.png, id=296, 745.78625pt x 662.475pt>
+File: Mesh.png Graphic file (type png)
+ <use Mesh.png>
+Overfull \hbox (14.75093pt too wide) in paragraph at lines 247--247
+ [] 
+ []
+
+[10
+
+ </home/dimyriy/Master/tex/Mesh.png (PNG copy)>]
+<Solution.png, id=323, 745.78625pt x 642.4pt>
+File: Solution.png Graphic file (type png)
+ <use Solution.png>
+Overfull \hbox (14.75093pt too wide) in paragraph at lines 263--263
+ [] 
+ []
+
+<Pathlines.png, id=324, 630.355pt x 629.35126pt>
+File: Pathlines.png Graphic file (type png)
+ <use Pathlines.png> [11
+
+ </home/dimyriy/Master/tex/Solution.png (PNG copy)> </home/dimyriy/Master/tex/P
+athlines.png (PNG copy)>]
 \tf@nav=\write5
 \openout5 = `Bogdanov-master.nav'.
 
@@ -1569,28 +1692,27 @@ Overfull \hbox (27.6342pt too wide) in paragraph at lines 145--145
 \tf@snm=\write7
 \openout7 = `Bogdanov-master.snm'.
 
-
-(/home/dimyriy/Master/tex/Bogdanov-master.aux) ) 
+ (/home/dimyriy/Master/tex/Bogdanov-master.aux) ) 
 Here is how much of TeX's memory you used:
- 13940 strings out of 494818
- 238815 string characters out of 1178667
- 332209 words of memory out of 3000000
- 16706 multiletter control sequences out of 15000+50000
- 16661 words of font info for 43 fonts, out of 3000000 for 9000
+ 14025 strings out of 494818
+ 240345 string characters out of 1178667
+ 332210 words of memory out of 3000000
+ 16771 multiletter control sequences out of 15000+50000
+ 17793 words of font info for 46 fonts, out of 3000000 for 9000
  212 hyphenation exceptions out of 8191
  46i,16n,60p,964b,720s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts
-/enc/dvips/base/8r.enc}{/usr/share/texmf-texlive/fonts/enc/t2/t2a.enc}</usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmss8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmsy5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy7.p
-fb></usr/share/texmf/fonts/type1/public/pscyr/textb18.pfb></usr/share/texmf/fon
-ts/type1/public/pscyr/textb19.pfb>
-Output written on Bogdanov-master.pdf (7 pages, 276787 bytes).
+{/usr/share/texmf-texlive/font
+s/enc/dvips/base/8r.enc}{/usr/share/texmf-texlive/fonts/enc/t2/t2a.enc}</usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmss8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
+ts/cm/cmsy5.pfb></usr/share/texmf/fonts/type1/public/pscyr/textb18.pfb></usr/sh
+are/texmf/fonts/type1/public/pscyr/textb19.pfb></usr/share/texmf/fonts/type1/pu
+blic/pscyr/textb20.pfb>
+Output written on Bogdanov-master.pdf (11 pages, 916228 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 388 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

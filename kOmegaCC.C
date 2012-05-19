@@ -417,33 +417,33 @@ void kOmegaCC::correct()
     // Update omega and G at the wall
     omega_.boundaryField().updateCoeffs();
     volScalarField D = sqrt(max(asymInnerProduct, 0.09*omega_*omega_)); //Possibly wrong. Don't know what Omega is used in equation
-    tmp<volSymmTensorField> divS = fvc::div(phi_, tSymm())/rho_; //Was added by me (Substantional Derivative of the StressTensor symmetric part)
+    tmp<volSymmTensorField> divS = fvc::ddt(tSymm()) + fvc::div(surfaceScalarField("phiU",phi_/fvc::interpolate(rho_)), tSymm()); //Was added by me (Substantional Derivative of the StressTensor symmetric part)
     volScalarField rT = tSkew().component(0)*tSymm().component(0)*divS().component(0) +
-                            tSkew().component(0)*tSymm().component(3)*divS().component(1) +
-                            tSkew().component(0)*tSymm().component(6)*divS().component(2) +
-                            tSkew().component(1)*tSymm().component(1)*divS().component(0) +
-                            tSkew().component(1)*tSymm().component(4)*divS().component(1) +
-                            tSkew().component(1)*tSymm().component(7)*divS().component(2) +
-                            tSkew().component(2)*tSymm().component(2)*divS().component(0) +
-                            tSkew().component(2)*tSymm().component(5)*divS().component(1) +
-                            tSkew().component(2)*tSymm().component(8)*divS().component(2) +
+                            tSkew().component(0)*tSymm().component(1)*divS().component(1) +
+                            tSkew().component(0)*tSymm().component(2)*divS().component(2) +
                             tSkew().component(3)*tSymm().component(0)*divS().component(3) +
-                            tSkew().component(3)*tSymm().component(3)*divS().component(4) +
-                            tSkew().component(3)*tSymm().component(6)*divS().component(5) +
-                            tSkew().component(4)*tSymm().component(1)*divS().component(3) +
-                            tSkew().component(4)*tSymm().component(4)*divS().component(4) +
-                            tSkew().component(4)*tSymm().component(7)*divS().component(5) +
-                            tSkew().component(5)*tSymm().component(2)*divS().component(3) +
-                            tSkew().component(5)*tSymm().component(5)*divS().component(4) +
-                            tSkew().component(5)*tSymm().component(8)*divS().component(5) +
+                            tSkew().component(3)*tSymm().component(1)*divS().component(4) +
+                            tSkew().component(3)*tSymm().component(2)*divS().component(5) +
                             tSkew().component(6)*tSymm().component(0)*divS().component(6) +
-                            tSkew().component(6)*tSymm().component(3)*divS().component(7) +
-                            tSkew().component(6)*tSymm().component(6)*divS().component(8) +
-                            tSkew().component(7)*tSymm().component(1)*divS().component(6) +
+                            tSkew().component(6)*tSymm().component(1)*divS().component(7) +
+                            tSkew().component(6)*tSymm().component(2)*divS().component(8) +
+                            tSkew().component(1)*tSymm().component(3)*divS().component(0) +
+                            tSkew().component(1)*tSymm().component(4)*divS().component(1) +
+                            tSkew().component(1)*tSymm().component(5)*divS().component(2) +
+                            tSkew().component(4)*tSymm().component(3)*divS().component(3) +
+                            tSkew().component(4)*tSymm().component(4)*divS().component(4) +
+                            tSkew().component(4)*tSymm().component(5)*divS().component(5) +
+                            tSkew().component(7)*tSymm().component(3)*divS().component(6) +
                             tSkew().component(7)*tSymm().component(4)*divS().component(7) +
-                            tSkew().component(7)*tSymm().component(7)*divS().component(8) +
-                            tSkew().component(8)*tSymm().component(2)*divS().component(6) +
-                            tSkew().component(8)*tSymm().component(5)*divS().component(7) +
+                            tSkew().component(7)*tSymm().component(5)*divS().component(8) +
+                            tSkew().component(2)*tSymm().component(6)*divS().component(0) +
+                            tSkew().component(2)*tSymm().component(7)*divS().component(1) +
+                            tSkew().component(2)*tSymm().component(8)*divS().component(2) +
+                            tSkew().component(7)*tSymm().component(6)*divS().component(3) +
+                            tSkew().component(7)*tSymm().component(7)*divS().component(4) +
+                            tSkew().component(7)*tSymm().component(8)*divS().component(5) +
+                            tSkew().component(8)*tSymm().component(6)*divS().component(6) +
+                            tSkew().component(8)*tSymm().component(7)*divS().component(7) +
                             tSkew().component(8)*tSymm().component(8)*divS().component(8);
     divS.clear();
     tSkew.clear();
@@ -459,6 +459,10 @@ void kOmegaCC::correct()
         ),
         max(min((scalar(1) + cr1_)*2*rStar/(scalar(1)+rStar)*(scalar(1)-cr3_*atan(cr2_*rTilda))-cr1_, scalar(1.25)), scalar(0))
     );
+    if(runTime_.outputTime())
+    {
+        Frot.write();
+    }
     rStar.clear();
     rTilda.clear();
     rT.clear();

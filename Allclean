@@ -1,0 +1,6 @@
+rm -r processor*
+rm -r [1-9]*
+rm -r [0-9].*
+rm -r [0-9]e*
+rm -r probes
+rm -r sets

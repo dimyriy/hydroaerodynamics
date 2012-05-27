@@ -1,21 +1,37 @@
-\documentclass[a4paper,11pt]{report}
-\usepackage[T1]{fontenc}
+\documentclass[pdftex,a4paper,12pt]{article}
+%\usepackage{pscyr}
+\usepackage[T2A]{fontenc}
 \usepackage[russian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-\renewcommand{\rmdefault}{Free}
+\usepackage{graphicx}
 
 \title{Численное моделирование фильтра циклон}
 \author{Дмитрий Богданов}
-
+\date{}
 \begin{document}
-
-\maketitle
+\include{titlepage}
 \tableofcontents
-
-\begin{abstract}
-\end{abstract}
-
-\chapter{}
-
+\newpage
+\section{Введение}
+\subsection{Актуальность проблемы}
+	\hspace{2em} 	Задача очищения атмосферного воздуха от загрязняющих выбросов промышленных предприятий достаточно актуальна. Выбросы от стационарных источников вредных веществ в атмосферу городов и населенных пунктов, расположенных на территории северо-западного федерального округа,  по данным Росстата за 2007 год,  составили 2319000 тонн, в том числе твёрдых -- 289400 тонн.
+	\begin{figure}[ht]
+		\vspace{-1.4em}
+		\begin{minipage}[b]{0.48\linewidth}
+		По данным European Environment Agency выброс $SO_2$ в европе (за исключением России) за 2010 год составил 8297000 тонн.
+			Динамика изменения объёма выбросов твёрдых вредных веществ в атмосферу \textit{(рис. \ref{figure:atmosphereDynamic})} имеет тенденцию к росту, что говорит о том, что решение проблемы инженерной защиты воздуха от вредных веществ останется актуальной и в ближайшем будущем. 
+		\end{minipage}
+		\hspace{0.04\linewidth}
+		\begin{minipage}[b]{0.48\linewidth}
+			\centering
+			\includegraphics[scale=0.2]{atmosphereDynamic}
+			\caption{Динамика выбросов твёрдых вредных веществ в атмосферу}
+			\label{figure:atmosphereDynamic}
+		\end{minipage}
+	\end{figure}
+	
+	Для очищения воздуха от твёрдых примесей широкое распространение получили фильтры типа циклон. 
+	\subsection{Цели работы}
+%Введение
 \end{document}

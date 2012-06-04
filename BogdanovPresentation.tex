@@ -1,18 +1,19 @@
-\documentclass[8pt]{beamer}
+\documentclass[8pt, hyperref={pdfpagelabels=false}]{beamer}
+\let\Tiny=\tiny
 \usepackage[T2A]{fontenc}
 \usepackage{pscyr}
-\usepackage[english,russian]{babel}
+\usepackage[russian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage[unicode]{hyperref}
-\setbeamertemplate{caption}[numbered]
 \usetheme{CambridgeUS}
-\beamertemplatesquareitem
-\begin{document}
-\title{Моделирование фильтра циклон}
-\author{Дмитрий Богданов}
+\hypersetup{unicode = true}
+\title{\texorpdfstring{Моделирование фильтра циклон}{cycloneModeling}}
+\author{\texorpdfstring{Дмитрий Богданов}{author}}
 \institute{СПБГПУ}
 \date{\today}
+\setbeamertemplate{caption}[numbered]
+
+\begin{document}
 \frame{\titlepage}
 \frame{\frametitle{Содержание}\small{\tableofcontents}}
 \section{Постановка задачи}
@@ -23,8 +24,8 @@
 			\vspace{0.2\textwidth}
 			\begin{table}[h]
 			\caption{Геометрия фильтра}
-			\hline
 			\begin{tabular}{c c}
+			\hline
 				\label{geometrytable}
 				Диаметр цилиндра, $D$ & $0.205m$ \\
 				Диаметр выходной трубы, $D_e$ & $0.5D$ \\
@@ -192,8 +193,8 @@
 		\vspace{0.1\textwidth}
 		\begin{table}[h]
 			\caption{Параметры задачи о течении в тестовом циклоне}
-			\hline
 			\begin{tabular}{r c}
+			\hline
 				Высота входного канала, $h_{in}$ & $0.2 [m]$ \\
 				Высота выходного канала, $h_{out}$ & $0.2 [m]$ \\
 				Ширина входного канала, $w_{in}$ & $0.1 [m]$ \\
@@ -245,8 +246,8 @@
 		\vspace{0.2\textwidth}
 		\begin{table}
 			\caption{Граничные условия}
-			\hline
 			\begin{tabular}{l c}
+			\hline
 				Массовый расход через входное сечение, $Q_{in}$ & $0.08 [kg/s]$\\
 				Температура газа на входе в циклон, $T_{in}$ & $300 [K]$ \\
 				Температура внешних стенок, $T_w$ & $300 [K]$ \\

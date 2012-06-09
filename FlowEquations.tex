@@ -1,0 +1,26 @@
+\subsection{Уравнения движения}
+		\subsubsection{Уравнение баланса массы}
+			\begin{equation}
+				\frac{\partial \rho}{\partial t} + \frac{\partial}{\partial x_i}(\rho u_i) = 0
+			\end{equation}
+		\subsubsection{Уравнение баланса импульса}
+			\begin{equation}
+				\frac{\partial \rho u_i}{\partial t} + \frac{\partial}{\partial x_j}(\rho u_iu_j) = - \frac{\partial p}{\partial x_i} + \frac{\partial {\tau_{ij}}_{eff}}{\partial x_j},
+			\end{equation}
+			где ${\tau_{ij}}_{eff}$ - тензор вязких напряжений, выражаемый по формуле
+			\begin{equation}
+				{\tau_{ij}}_{eff} = \mu_{eff}\left( \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right) - \frac{2}{3}\mu_{eff}\frac{\partial u_i}{\partial x_j} \delta_{ij} \quad \mu_{eff} = \mu + \mu_{t}
+			\end{equation}
+		\subsubsection{Уравнение баланса энтальпии}
+		\subsubsection{Уравнение состояния}
+			\hspace{2em}При расчётах течений сжимаемой жидкости используется модель идеального газа:
+			\begin{equation}
+				\frac{p}{\rho} = \frac{R}{m}T, \quad m = 28.966 \frac{kg}{mole}
+			\end{equation}
+			\subsubsection{Зависимость вязкости от температуры}
+				\hspace{2em}Зависимость вязкости от температуры выражается формулой Саттерленда для сильно неизотермических течений.
+				\begin{equation}
+					\mu = \mu_0 \frac{T_0 + C}{T + C_0} \frac{T^{\frac{3}{2}}}{T}, \quad \mu_0 = 1.73 \cdot 10^{-5} kg \cdot m/s, \quad T_0 = 273K, \quad C=110 K
+				\end{equation}
+				Для течений, температура в которых меняется слабо, вязкость полагается постоянной.
+	%Основные уравнения

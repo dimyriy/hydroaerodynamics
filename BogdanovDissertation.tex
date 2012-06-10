@@ -1,9 +1,9 @@
-\documentclass[pdftex,a4paper,12pt]{article}
+\documentclass[12pt,pdftex,a4paper]{article}
 \usepackage[T2A]{fontenc}
 \usepackage[russian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[font=normalsize,labelfont=bf]{caption}
 \usepackage[unicode=true]{hyperref}
 \hypersetup{
 		pdftitle={Богданов Д.А., “Численное исследование течения в фильтре-циклоне”, 2012},
@@ -13,20 +13,25 @@
     linkcolor=black,
     urlcolor=black
 }
+\oddsidemargin=0pt
+\textwidth=155mm
 \title{Численное исследование течения в фильтре-циклоне}
 \author{Дмитрий Богданов}
 \date{}
+\renewcommand\normalsize{\fontsize{14pt}{24pt}\selectfont}
 \begin{document}
-\include{titlepage}
+\input{titlepage}
 \tableofcontents
 \newpage
-\include{Abstract}
+\input{Abstract}
 \newpage
-\include{Overview}
+\input{Overview}
 \newpage
-\include{NumericalSimulation}
+\input{NumericalSimulation}
 \newpage
-\include{Results}
+\input{Results}
+\newpage
+\input{Conclusion}
 \newpage
 \thispagestyle{plain}
 \bibliographystyle{plain}

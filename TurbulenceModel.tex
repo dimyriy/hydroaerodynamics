@@ -31,7 +31,7 @@
 				\sigma_{k2} = 1.0, \quad \sigma_{\omega 2} = 1.168, \quad \gamma_2 = 0.4403 \quad \beta_2=0.0828, \quad \beta^*=0.09, \quad \kappa = 0.41
 			$$
 			\begin{eqnarray}
-				F_1 &=& \tanh{(arg_1^4)}, \quad arg_1 = \min\left[\max\left(\frac{\sqrt{k}}{\beta^*\omega y},\frac{500 \nu}{y^2 \omega} \right), \frac{4\rho\sigma_{\omega 2}k}{CD_{k\omega}y^2}\right] \\ \nonumber CD_{k\omega} &=& \max\left( 2\rho\sigma_{\omega_2}\frac{1}{\omega}\frac{\partial k}{\partial x_j}\frac{\partial \omega}{\partial x_j},10^{-10} \right) \\
+				\nonumber F_1 &=& \tanh{(arg_1^4)}, \quad arg_1 = \min\left[\max\left(\frac{\sqrt{k}}{\beta^*\omega y},\frac{500 \nu}{y^2 \omega} \right), \frac{4\rho\sigma_{\omega 2}k}{CD_{k\omega}y^2}\right] \\ \nonumber CD_{k\omega} &=& \max\left( 2\rho\sigma_{\omega_2}\frac{1}{\omega}\frac{\partial k}{\partial x_j}\frac{\partial \omega}{\partial x_j},10^{-10} \right) \\
 				F_2 &=& \tanh{(arg_2^2)}, \quad arg_2 = \max\left(2\frac{\sqrt{k}}{\beta^*\omega y},\frac{500 \nu}{y^2\omega}\right) \\
 				\nonumber \tau_{ij} &=& \mu_t\left( \frac{\partial U_i}{\partial x_j} + \frac{\partial U_j}{\partial x_i} - \frac{2}{3}\frac{\partial U_k}{\partial U_k}\right) - \frac{2}{3}\rho k \delta_{ij}
 			\end{eqnarray}
@@ -48,7 +48,7 @@
 				\begin{equation}
 					\omega_{vis} = \frac{6\nu}{0.075 y^2}, \quad \omega_{log} = \frac{1}{0.3 \kappa}\frac{u_{\tau}}{y}
 				\end{equation}
-				Это решение может быть переформулировано в терминах $y^{+}$:
+				Это решение может быть переформулировано с учётом $y^{+}$:
 				\begin{equation}
 						u_{\tau}^{vis} = \frac{U_1}{y^{+}}, \quad u_{\tau}^{log} = \frac{U_1}{\frac{1}{\kappa}\ln(y^{+})+C}, \quad u_{\tau} = {}^4\sqrt{(u_{\tau}^{vis})^4 + (u_{\tau}^{log})^4}
 				\end{equation}
@@ -60,5 +60,6 @@
 		\begin{equation}
 			\omega_w = 10 \frac{6\nu}{\beta_1 \triangle{y_1}^2}
 		\end{equation}
+		а $k_w = 0$.
 	\input{CurvatureCorrection}
 	%Модель турбулентности

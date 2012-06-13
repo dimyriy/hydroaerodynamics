@@ -1,11 +1,20 @@
-\documentclass[12pt,pdftex,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage[T2A]{fontenc}
 \usepackage[russian]{babel}
+\usepackage{times}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
+%\usepackage{graphicx}
+\ifx\pdfoutput\undefined
+	\usepackage{graphicx}
+\else
+	\usepackage[pdftex]{graphicx}
+	\usepackage{epstopdf}
+\fi
+\usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage[font=normalsize,labelfont=bf]{caption}
 \usepackage[unicode=true]{hyperref}
+\usepackage{afterpage}
 \hypersetup{
 		pdftitle={Богданов Д.А., “Численное исследование течения в фильтре-циклоне”, 2012},
     colorlinks,

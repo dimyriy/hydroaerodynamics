@@ -6,7 +6,6 @@
 *.ps
 *.snm
 *.log
-*.eps
 *.tex~
 *.bbl
 *.blg

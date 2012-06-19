@@ -1,15 +1,15 @@
-	\newpage
 	\subsection{Метод конечных объёмов}
 		Перейдём от обсуждения определяющих уравнений непосредственно к методу конечных объёмов. Суть этого метода заключается в разбиении расчётной области на множество непересекающихся конечных объёмов (ячеек), для каждого из которых записывается интегральная формулировка законов сохранения.
-		\begin{figure}
+		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.5]{twoCells}
 			\caption{Схематическое изображение двух соседних ячеек}
 			\label{fig:twoCells}
 		\end{figure}
-		\subsubsection*{Дискретизация уравнений}
+		\clearpage
 		\addcontentsline{toc}{subsubsection}{Дискретизация уравнений}
-		\begin{figure}[ht]
+		\begin{figure}[h]
+			\vspace{-2em}
 			\begin{minipage}{0.43\linewidth}
 				\includegraphics[scale=0.5]{controlVolume}
 				\vspace{-2em}
@@ -18,10 +18,11 @@
 			\end{minipage}
 			\hspace{-1em}
 			\begin{minipage}{0.6\linewidth}
-				\vspace{-2em}
-				Пусть через контрольный объём $V$ \textit{(рисунок \ref{fig:volume})}, ограниченный контрольной поверхностью $S$, $\vec{\delta S} = \vec{n} \delta S$, проходит жидкость со скоростью $\vec{U}$. Выделим бесконечно малый объём $\delta V$. 
+				\vspace{-1em}
+				Пусть через контрольный объём $V$ \textit{(рисунок \ref{fig:volume})}, ограниченный контрольной поверхностью $S$, $\vec{\delta S} = \vec{n} \delta S$, проходит жидкость со скоростью $\vec{U}$. Выделим из объёма $V$ бесконечно малый объём $\delta V$. 
 			\end{minipage}
 		\end{figure}
+		\vspace{-1em}
 		Рассмотрим скалярную величину $\Phi$ - плотность распределения некоторой физической величины на единицу массы. Тогда, с учётом того, что $\rho \delta V = \delta m$, в объёме $\delta V$ содержится $\rho \delta V \Phi$ этой физической величины. Уравнение сохранения для этой величины запишется, как
 		\begin{equation}
 			\frac{\partial}{\partial t} \int_V \rho \Phi \delta V + \oint_S \left( \rho \vec{U} \Phi + \vec{q}_{\Phi}  \right)\cdot \vec{\delta S} = \int_V \rho S_{\phi} \delta V,
@@ -32,7 +33,7 @@
 		Введём точку $C$ -- центр ячейки \textit(рисунок \ref{fig:twoCells}) и применим теорему о среднем к объёмному интегралу:
 		\begin{figure}[h]
 			\begin{minipage}{0.43\linewidth}
-				\includegraphics[scale=0.5]{meanValueTheorem}
+				\includegraphics[scale=0.4]{meanValueTheorem}
 				\label{fig:meanValueTheorem}
 			\end{minipage}
 			\hspace{-1em}
@@ -46,8 +47,7 @@
 				\vspace{2em}
 			\end{minipage}
 		\end{figure}
-			\vspace{-1em}
-					
+		\clearpage
 			Пусть контрольная поверхность состоит из граней, то есть имеется огранённый объект. Тогда
 			\begin{equation}
 				\oint\left(\rho \vec{U} \Phi + \vec{q}_{\Phi} \right) \cdot \vec{\delta S} = \sum_f \int_{S_f} \left(\rho \vec{U} \Phi + \vec{q}_{\Phi} \right) \cdot \vec{\delta S},
@@ -107,7 +107,7 @@
 			\begin{equation}
 				\int_V \nabla \Phi \delta V = \int_S \vec{\delta S} \Phi = \sum_f \vec{S}_f \Phi_f
 			\end{equation}
-			
+			\newpage
 			\textit{Метод наименьших квадратов}
 			
 			Второй -- несколько более сложный метод наименьших квадратов, суть которого объясняется следующим образом: значение $\Phi$ в точке $C$ может быть экстраполировано в соседнюю ячейку с центром в точке $N$ с использованием градиента в точке $C$. Экстраполированное значение в точке $N$ сравнивается с актуальным значением в этой точке и рассчитывается ошибка в определении $\Phi$. Если мы теперь минимизируем сумму квадратов взвешенных ошибок во всех соседних ячейках по отношению к градиенту, значение градиента будет аппроксимировано достаточно точно. Таким образом, вычислив сначала значение тензора

@@ -1,0 +1,34 @@
+	\subsection{Модель турбулентности}
+		
+		Формулировка SST-модели турбулентности, согласно \cite{Menter} (но с учётом поправки на кривизну линий тока), следующая:
+		\subparagraph{Уравнение баланса кинетической энергии турбулентности\\}
+				\begin{equation}
+				\frac{\partial \rho k}{\partial t} + \frac{\partial \rho U_j k}{\partial x_j} = \tilde{P}_k f_{rot} - \beta^* \rho k \omega + \frac{\partial}{\partial x_j}(\Gamma_k \frac{\partial k}{\partial x_j}),
+				\end{equation}
+				где $f_{rot}$ - поправочный коэффициент Шура-Спалларта к генерации турбулентности, учитывающий криволинейность потока, определяемый в \ref{CC}.
+		\subparagraph{Уравнение баланса удельной скорости диссипации\\}
+			\begin{equation}
+				\frac{\partial \rho \omega}{\partial t} + \frac{\partial U_j \omega}{\partial x_j} = \frac{\gamma}{\nu_t}P_kf_{rot} - \beta\rho\omega^2 + \frac{\partial}{\partial x_j}(\Gamma_{\omega}\frac{\partial \omega}{\partial x_j}) + (1-F_1)2\rho \sigma_{\omega_2}\frac{1}{\omega}\frac{\partial k}{\partial x_j}\frac{\partial \omega}{\partial x_j},
+			\end{equation}
+			где
+			\begin{equation}
+				\Gamma_k = \mu + \frac{\mu_t}{\sigma_k}, \quad \Gamma_{\omega} = \mu + \frac{\mu_t}{\sigma_{\omega}}, \quad P_k = \tau_{ij}\frac{\partial U_i}{\partial x_j}
+			\end{equation}
+			$$
+			 \tilde{P}_k = min(P_k, c_1\varepsilon), \quad \mu_t=\rho\frac{a_1 k}{max(a_1\omega, S \cdot F_2)}
+			$$
+			
+			Коэффициент $\phi$ в модели представляет собой функцию от $F_1$: $\phi = F_1\phi_1 + (1-F_1)\phi_2$, где $\phi_1$ и $\phi_2$ соответственно коэффициенты для $k-\omega$ и $k-\varepsilon$ моделей.
+			$$
+				\sigma_{k1} = 1.176, \quad \sigma_{\omega 1} = 2.0, \quad \gamma_1 = 0.5532 \quad \beta_1=0.075, \quad \beta^*=0.09, \quad c_1 = 10,
+			$$
+			$$
+				\sigma_{k2} = 1.0, \quad \sigma_{\omega 2} = 1.168, \quad \gamma_2 = 0.4403 \quad \beta_2=0.0828, \quad \beta^*=0.09, \quad \kappa = 0.41
+			$$
+			\begin{eqnarray}
+				\nonumber F_1 &=& \tanh{(arg_1^4)}, \quad arg_1 = \min\left[\max\left(\frac{\sqrt{k}}{\beta^*\omega y},\frac{500 \nu}{y^2 \omega} \right), \frac{4\rho\sigma_{\omega 2}k}{CD_{k\omega}y^2}\right] \\ \nonumber CD_{k\omega} &=& \max\left( 2\rho\sigma_{\omega_2}\frac{1}{\omega}\frac{\partial k}{\partial x_j}\frac{\partial \omega}{\partial x_j},10^{-10} \right) \\
+				F_2 &=& \tanh{(arg_2^2)}, \quad arg_2 = \max\left(2\frac{\sqrt{k}}{\beta^*\omega y},\frac{500 \nu}{y^2\omega}\right) \\
+				\nonumber \tau_{ij} &=& \mu_t\left( \frac{\partial U_i}{\partial x_j} + \frac{\partial U_j}{\partial x_i} - \frac{2}{3}\frac{\partial U_k}{\partial U_k}\right) - \frac{2}{3}\rho k \delta_{ij}
+			\end{eqnarray}
+	\input{CurvatureCorrection}
+	%Модель турбулентности

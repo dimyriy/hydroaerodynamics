@@ -1,0 +1,16 @@
+	\subparagraph{Поправка на кривизну линий тока\\}
+		\label{CC}
+		Согласно \cite{Smirnov}, формулировка поправочного члена, учитывающего кривизну линий тока, к модели Ментера следующая:\\
+		\begin{equation}
+				f_{r1}(r^*,\tilde{r}) = 2r^*\left( \frac{1+C_{r1}}{1+ r^*} \right)\left[ 1-C_{r3}\arctan{(C_{r2}\tilde{r})} \right] - C_{r1},
+		\end{equation}
+		\begin{equation}
+				\tilde{r} = 2\Omega_{ik}S_{kj}\frac{DS_{ij}}{Dt}\frac{1}{\Omega D^3}, \quad D^2 = \max(S^2, 0.09 \omega^2),
+		\end{equation}
+		$$
+				S^2 = 2 S_{ij}S_{ij}, \quad \Omega^2 = 2 \Omega_{ij} \Omega_{ij}, \quad r^* = S/\Omega
+		$$
+		$$
+				C_{r1} = 1, \quad C_{r2} = 2, \quad C_{r3} = 1, \quad f_{rot} = \max[\min(f_{r1},1.25),0]
+		$$
+		%Поправка на кривизну линий тока

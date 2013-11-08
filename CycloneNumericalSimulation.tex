@@ -34,17 +34,33 @@
 \ead{\href{mailto:dimyriy.bogdanov@gmail.com}{dimyriy.bogdanov@gmail.com}}
 
 \begin{abstract}
-In this study a numerical simulation of turbulent flow of an air with dispersed particles is presented for cyclonic separator. Since the separator construction make it difficult to simulate the flow using the conventional turbulent models due to high streamlines curvature, the curvature correction term was included in $k-\omega-SST$ turbulence model. Experimental data for turbulent flow in U-duct has been used for model validation. The numerical simulation results demonstrate that the implemented turbulence model successfully predicts the cyclonic separator efficiency.
+Abstract. Numerical simulation of a turbulent flow of air with dispersed particles through 
+a cyclonic separator is presented. Because of a high streamline curvature in the separator it 
+is difficult to simulate the flow by using the conventional turbulent models. In this work the 
+curvature correction term was included into the $k-\omega-SST$ turbulence model implemented in 
+the OpenFOAM{\textregistered} software. Experimental data and results of numerical simulation by the
+commercial ANSYS Fluent{\textregistered} solver for a turbulent flow in a U-duct were used to validate the 
+model. The numerical simulation of the flow in the cyclonic separator demonstrates that the 
+implemented turbulence model successfully predicts the cyclonic separator efficiency.
 \end{abstract}
 
 \section{Introduction}
-Cyclonic separators are widely used for gas separation from dispersed phase. Its efficiency calculated by dividing the number of filtered particles by the total number of particles. However, numerical simulation of the turbulent flow in separator for prediction of its efficiency is a very difficult problem since conventional eddy-viscosity models can't adequately predict the flow\cite{ShurSpallart} due to high streamlines curvature and more specifically, inadequate calculation of turbulence kinetic energy production. The production can be corrected using Shur-Spalart curvature correction function for Spalart-Allmaras turbulence model reformulated\cite{Smirnov} in terms of the $k-\omega-SST$ turbulence model.
+Cyclonic separators are widely used for dispersed phase separation from the gas \cite{instructions} . One of 
+their important parameters is the efficiency which is the ratio between the number of filtered 
+particles and the total number of particles injected into a cyclonic separator. However, it is 
+extremely difficult to predict the separator efficiency by using numerical simulation of the 
+turbulent flow because conventional eddy-viscosity models cannot adequately describe the 
+flow \cite{ShurSpallart} because of a high streamline curvature and, more specifically, inadequate calculation 
+of the turbulence kinetic energy production. The kinetic energy production can be corrected by 
+using the Shur-Spalart curvature correction function for the Spalart-Allmaras turbulence model 
+reformulated in \cite{Smirnov} in terms of the $k-\omega-SST$ turbulence model.
 
 \section{Cyclonic separator model}
-The typical scheme of the air flow in cyclonic separator is presented on \cref{fig:physicalModel}. The air with dispersed particles enters the cyclone through air inlet. Under the centrifugal forces the heavy particles pass near to the boundary layer on a sidewall. It that region the influence of the air flow on particles movement is relatively small in compare with influence of the gravity forces and particles falling down to the dust. Cleaner air goes out from cyclone through air outlet.
+A typical scheme of the air flow in cyclone is presented in \cref{fig:physicalModel} \cite{instructions}. The air with dispersed particles enters the cyclone through an air inlet. Under the centrifugal forces heavy particles move to the boundary layer on a sidewall. move to the boundary layer on a sidewall. The influence of the air flow on the particles which have moved to the boundary layer is relatively weak as compared with the influence of the gravity force and hence particles fall to the dust chamber. The air leaves the cyclone through an air outlet.
 \section{SST with curvature correction model formulation}
 \label{sec:model}
-The correction function \eqref{eq:1} suggested in \cite{ShurSpallart} used as a multiplier of the production term in the Spalart-Allmaras eddy viscosity transport equation.
+As stated above, a correction of the SST turbulence model is needed because of a high streamline curvature. In this paper the correction function \eqref{eq:1} suggested in \citep{ShurSpallart} is used as a multiplier of the production term in the Spalart-Allmaras eddy viscosity transport equation. In \cite{Smirnov}, it is suggested 
+that this function be used with respect to the SST model as follows
 
 \begin{equation}
 \label{eq:1}
@@ -103,11 +119,19 @@ $DS_{ij}/Dt$ - components of the Lagrangian strain tensor derivative.
 $$
 c_{r_1} = 1.0, \quad c_{r_2} = 2.0, \quad c_{r_3} = 1.0
 $$
-
+ where $k$ is for turbulence kinetic energy, ... 
 
 \section{Model validation}
 
-Turbulence model described in \cref{sec:model} has been implemented using OpenFOAM{\textregistered} mathematical library. Numerical simulation results comparison with Monson \cite{Monson} experimental data for turbulent flow in U-duct and numerical simulation in ANSYS Fluent{\textregistered} for the velocity projections $U_x$ and $U_y$ shown in \cref{fig:x0up,fig:x0down,fig:x1up,fig:x1down}. U-duct geometric and flow parameters shown in \cref{table:1}. Flow scheme presented in \cref{fig:uDuctScheme}. At the inlet section in accordance with the experiment the flow was assumed fully developed. So inlet profiles used as inlet boundary condition were obtained from preliminary computations of the turbulent flow in a plane channel.
+The turbulence model described in \cref{sec:model} was implemented by using the OpenFOAM{\textregistered} mathematical library. Model validation was performed by using the Monson \cite{Monson} experimental data for a turbulent flow in a U-duct and numerical simulation in ANSYS Fluent{\textregistered}. Geometric and flow parameters for the U-duct are listed in \cref{table:1}. The flow scheme is presented in \cref{fig:uDuctScheme}.
+The inlet profile used as the inlet boundary condition was obtained from preliminary 
+computations of the turbulent flow in a plane channel, because in the Monson experiment \cite{Monson} the 
+flow was assumed to be fully developed in the inlet section. Numerical simulation of the flow 
+was performed by using standard SST and SST with the curvature correction term (SST-CC) in 
+both solvers.
+
+Results of numerical simulation for velocity projections $U_x$ and $U_y$ in different cross-sections of the channel are shown in \cref{fig:x0up,fig:x0down,fig:x1up,fig:x1down}. 
+U-duct geometric and flow parameters shown in \cref{table:1}. Flow scheme presented in \cref{fig:uDuctScheme}. At the inlet section in accordance with the experiment the flow was assumed fully developed. So inlet profiles used as inlet boundary condition were obtained from preliminary computations of the turbulent flow in a plane channel.
 
 It can be seen that the results of numerical simulation obtained using both implemented model and ANSYS Fluent{\textregistered} solver are in good agreement with the Monson experimental data. SST model with curvature correction shows significant improvement of simulated velocity profile compared to the non-modified SST model.
 \begin{figure}[h]
@@ -143,7 +167,7 @@ Reynolds number, Re & $~10^5$\cr
 	\hspace{0.5em}
 	\begin{minipage}{0.45\linewidth}
 		\includegraphics[scale=0.33]{xh0down}
-		\caption{$U_y$, $x/H=0$ (top channel)}
+		\caption{$U_x$, $x/H=0$ (top channel)}
 		\label{fig:x0down}
 	\end{minipage}
 \end{figure}

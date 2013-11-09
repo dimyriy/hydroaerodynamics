@@ -1,12 +1,14 @@
 \documentclass[a4paper]{jpconf}
 \bibliographystyle{iopart-num}
+\usepackage{silence}
+\WarningsOff[caption]
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{amsmath}
-\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{fix-cm}
+\usepackage[hypcap=false, font=small,labelfont=bf]{caption}
 \begin{document}
-
 \crefname{equation}{Equation}{Equations}
 \crefname{chapter}{Chapter}{Chapters}
 \crefname{section}{Section}{Sections}
@@ -43,33 +45,29 @@ commercial ANSYS Fluent{\textregistered} solver for a turbulent flow in a U-duct
 model. The numerical simulation of the flow in the cyclonic separator demonstrates that the 
 implemented turbulence model successfully predicts the cyclonic separator efficiency.
 \end{abstract}
-
 \section{Introduction}
 Cyclonic separators are widely used for dispersed phase separation from the gas \cite{instructions} . One of 
 their important parameters is the efficiency which is the ratio between the number of filtered 
 particles and the total number of particles injected into a cyclonic separator. However, it is 
 extremely difficult to predict the separator efficiency by using numerical simulation of the 
 turbulent flow because conventional eddy-viscosity models cannot adequately describe the 
-flow \cite{ShurSpallart} because of a high streamline curvature and, more specifically, inadequate calculation 
-of the turbulence kinetic energy production. The kinetic energy production can be corrected by 
-using the Shur-Spalart curvature correction function for the Spalart-Allmaras turbulence model 
-reformulated in \cite{Smirnov} in terms of the $k-\omega-SST$ turbulence model.
+flow \cite{ShurSpallart} because of a high streamline curvature and, more specifically, inadequate calculation  of the turbulence kinetic energy production. The kinetic energy production can be corrected by using the Shur-Spalart curvature correction function for the Spalart-Allmaras turbulence model reformulated in \cite{Smirnov} in terms of the $k-\omega-SST$ turbulence model.
 
 \section{Cyclonic separator model}
 A typical scheme of the air flow in cyclone is presented in \cref{fig:physicalModel} \cite{instructions}. The air with dispersed particles enters the cyclone through an air inlet. Under the centrifugal forces heavy particles move to the boundary layer on a sidewall. move to the boundary layer on a sidewall. The influence of the air flow on the particles which have moved to the boundary layer is relatively weak as compared with the influence of the gravity force and hence particles fall to the dust chamber. The air leaves the cyclone through an air outlet.
 \section{SST with curvature correction model formulation}
 \label{sec:model}
-As stated above, a correction of the SST turbulence model is needed because of a high streamline curvature. In this paper the correction function \eqref{eq:1} suggested in \citep{ShurSpallart} is used as a multiplier of the production term in the Spalart-Allmaras eddy viscosity transport equation. In \cite{Smirnov}, it is suggested 
-that this function be used with respect to the SST model as follows
+As stated above, a correction of the SST turbulence model is needed because of a high streamline curvature. In this paper the correction function \eqref{eq:1} suggested in \cite{ShurSpallart} is used as a multiplier of the production term in the Spalart-Allmaras eddy viscosity transport equation. In \cite{Smirnov}, it is suggested that this function be used with respect to the SST model as follows
 
 \begin{equation}
 \label{eq:1}
 f_{rotation} = (1+c_{r_1}) \frac{2r^*}{1+r^*} [1-c_{r_3}\tan^{-1}(c_{r_2}\tilde{r})] -c_{r_1}
 \end{equation}
+
 \begin{figure}[h]
 \begin{minipage}{14pc}
 \includegraphics[width=8pc]{flowScheme1.png}\hspace{6pc}
-\caption{\label{fig:physicalModel}Scheme of the air flow inside cyclonic separator.}
+\caption{\label{fig:physicalModel} Scheme of the air flow inside cyclonic separator.}
 \end{minipage}
 \begin{minipage}{20pc}
 Article \cite{Smirnov} suggests to use this function as follows in respect to the SST model.
@@ -80,7 +78,10 @@ Article \cite{Smirnov} suggests to use this function as follows in respect to th
 \end{equation}
 
 \begin{equation}
-\frac{\partial (\rho \omega)}{\partial t} + \frac{\partial (\rho u_j \omega)}{\partial x_j} = \alpha \frac{\rho P_k}{\mu_t}f_{r_1}  - D_{\omega} + Cd_{\omega} + \frac{\partial}{\partial x_j} \left[ \mu_{eff}\frac{\partial \omega}{\partial x_j} \right]
+\begin{split}
+\frac{\partial (\rho \omega)}{\partial t} + \frac{\partial (\rho u_j \omega)}{\partial x_j} = \alpha \frac{\rho P_k}{\mu_t}f_{r_1}  - \beta \rho \omega^2 +\\
++ 2\left(1-F_1\right()\frac{\rho \sigma_{\omega_2}}{\omega}\frac{\partial k}{\partial x_j}\frac{\partial \omega}{\partial x_j} + \frac{\partial}{\partial x_j} \left[ \mu_{eff}\frac{\partial \omega}{\partial x_j} \right]
+\end{split}
 \end{equation}
 
 \begin{equation}
@@ -88,7 +89,7 @@ f_{r_1} = \max\left[ \min(f_{rotation}, 1.25), 0 \right]
 \end{equation}
 
 \begin{equation}
-r^*=\frac{S}{\Omega}
+r^*=\frac{S}{\Omega}, \quad \mu_{eff}=\mu_t + \sigma_{k/\omega}\mu_t
 \end{equation}
 
 \end{minipage}
@@ -114,12 +115,10 @@ S^2 = 2S_{ij}S_{ij}, \quad
 D^2 = \max(S^2, 0.09\omega^2)
 \end{equation}
 
-$DS_{ij}/Dt$ - components of the Lagrangian strain tensor derivative.
-
 $$
 c_{r_1} = 1.0, \quad c_{r_2} = 2.0, \quad c_{r_3} = 1.0
 $$
- where $k$ is for turbulence kinetic energy, ... 
+ where $u_i$ represents velocity components, $\rho$ - gas density, $k$ is for turbulence kinetic energy, $\omega$ is for specific dissipation rate, $S_{ij}$ - strain rate tensor, $\Omega_{ij}$ - vorticity rate, $P_k$ - production term for SST model, $f_{r_1}$ - correction function for the SST model, $f_{rotation}$ - correction function for the Spalart-Almaras model, $\mu_{t}$ - turbulence eddy viscosity and $DS_{ij}/Dt$ represents the components of the Lagrangian derivative of the strain rate tensor. $\alpha$, $beta$, $\beta^*$, $C$ - standard SST model constants, $c_{r_1}$, $c_{r_2}$, $c_{r_3}$ - SST-CC model constants, $F_1$ - additional function from standard SST model \cite{Menter}.
 
 \section{Model validation}
 
@@ -130,12 +129,10 @@ flow was assumed to be fully developed in the inlet section. Numerical simulatio
 was performed by using standard SST and SST with the curvature correction term (SST-CC) in 
 both solvers.
 
-Results of numerical simulation for velocity projections $U_x$ and $U_y$ in different cross-sections of the channel are shown in \cref{fig:x0up,fig:x0down,fig:x1up,fig:x1down}. 
-U-duct geometric and flow parameters shown in \cref{table:1}. Flow scheme presented in \cref{fig:uDuctScheme}. At the inlet section in accordance with the experiment the flow was assumed fully developed. So inlet profiles used as inlet boundary condition were obtained from preliminary computations of the turbulent flow in a plane channel.
+Results of numerical simulation for velocity projections $U_x$ and $U_y$ in different cross-sections of the channel are shown in \cref{fig:x0up,fig:x0down,fig:y0,fig:x1down}. \cref{fig:x0up} shows velocity profiles before U-turn. Because the flow curvature in this cross section is negligibly small, both models (SST and SST-CC) in both solvers give the same results which are in very good agreement with experimental data. \cref{fig:y0}  shows velocity  profiles at the center of the U-turn. As one can see from \cref{fig:y0}, the OpenFOAM{\textregistered} results are closer to the experimental values, and the results with the SST-CC model are better than those with the SST model. \cref{fig:x0down} shows velocity profiles immediately after U-turn. It is evident that SST-CC is much better than SST for both solvers. OpenFOAM{\textregistered} results are better on the inner wall of the cnahhel and worse on the outer wall as compared with Fluent{\textregistered}. \cref{fig:x1down} shows velocity profiles in the cross-section at the distance of the one caliber after the U-turn. The flow curvature is small here, so the difference between SST-CC and SST is insignificant and, like in the previous cross-section, the OpenFOAM{\textregistered} results are better on the inner wall of the channel and worse on the outer wall as compares with Fluent{\textregistered}.
 
-It can be seen that the results of numerical simulation obtained using both implemented model and ANSYS Fluent{\textregistered} solver are in good agreement with the Monson experimental data. SST model with curvature correction shows significant improvement of simulated velocity profile compared to the non-modified SST model.
 \begin{figure}[h]
-\begin{minipage}{15pc}
+\begin{minipage}{18pc}
 \begin{center}
 \captionof{table}{\label{table:1} Geometric and flow parameters for air flow in U-duct.}
 \begin{tabular}{{r}{l}}
@@ -144,80 +141,76 @@ Channel height, $H$ & $3.81cm$\cr
 Channel length, $L$ & $10H$\cr
 Inner radius, $R_i$ & $1.91cm$\cr
 Outer radius, $R_o$ & $5.72cm$\cr
-Average velocity at inlet $U_{in}$ & $30.1m/s$\cr
-Average temperature at inlet, $T_{in}$ & $264K$\cr
+Av. velocity at inlet $U_{in}$ & $30.1m/s$\cr
+Av. temperature at inlet, $T_{in}$ & $264K$\cr
 Pressure at outlet, $p_{out}$ & $1.15atm$\cr
 Reynolds number, Re & $~10^5$\cr
 \end{tabular}
 \end{center}
-\end{minipage}\hspace{3pc}
-\begin{minipage}{20pc}
+\end{minipage}
+\begin{minipage}{19pc}
 \begin{center}
-\includegraphics[width=20pc]{UDuct.eps}
-\captionof{figure}{\label{fig:uDuctScheme} Scheme of air flow in U-duct}
+\includegraphics[width=19pc]{UDuct.eps}
+\hspace{1em}\captionof{figure}{\label{fig:uDuctScheme} Scheme of flow in U-duct for the Monson experiment simulation}
 \end{center}
 \end{minipage}
 \end{figure}
 \begin{figure}[ht]
-	\begin{minipage}{0.45\linewidth}
+	\begin{minipage}{0.475\linewidth}
 		\includegraphics[scale=0.33]{xh0up}
-		\caption{$U_x$, $x/H=0$ (lower channel)}
+		\caption{$U_x$ velocity component distribution in $x/H=0$ cross-section (top channel).}
 		\label{fig:x0up}
 	\end{minipage}
 	\hspace{0.5em}
-	\begin{minipage}{0.45\linewidth}
-		\includegraphics[scale=0.33]{xh0down}
-		\caption{$U_x$, $x/H=0$ (top channel)}
-		\label{fig:x0down}
+	\begin{minipage}{0.475\linewidth}
+		\includegraphics[scale=0.33]{yh0}
+		\caption{$U_y$ velocity component distribution in $y/H=0$ cross-section.}
+		\label{fig:y0}
 	\end{minipage}
 \end{figure}
 \begin{figure}[ht]
-	\vspace{-1em}
-	\begin{minipage}{0.45\linewidth}
-		\includegraphics[scale=0.33]{yh0}
-		\caption{$U_y$, $y/H=0$}
-		\label{fig:x1up}
+	\vspace{-1em}	
+	\begin{minipage}{0.475\linewidth}
+		\includegraphics[scale=0.33]{xh0down}
+		\caption{$U_x$ velocity component distribution in $x/H=0$ cross-section (lower channel).}
+		\label{fig:x0down}
 	\end{minipage}
 	\hspace{0.5em}
-	\begin{minipage}{0.45\linewidth}
+	\begin{minipage}{0.475\linewidth}
 		\includegraphics[scale=0.33]{xh1down}
-		\caption{$U_x$, $x/H=1$}
+		\caption{$U_x$ velocity component distribution in $x/H=1$ cross-section.}
 		\label{fig:x1down}
 	\end{minipage}
 \end{figure}
 \section{Results}
 
-In this section we consider the flow in cyclonic separator shown in \cref{fig:cycloneGeometryScheme}. Geometric parameters and boundary conditions presented in \cref{cycloneGeomPar} and \cref{geometrytable} respectively. Inlet velocity profile obtained from computation of fully developed turbulent flow in square-section channel.
+In this section we consider the flow in cyclonic separator shown in \cref{fig:cycloneGeometryScheme}. Geometric parameters and boundary conditions are presented in \cref{geometrytable} and \cref{flowtable} respectively. The inlet velocity profile was obtained from computation of a fully developed turbulent flow in a square-section channel. Numerical simulation was for three different inlet velocities and three particle diameters. The cyclone efficiency $\eta$ (the ratio between the particles filtered by the cyclone and the number of injected particles) was calculated for all cases. Results of the numerical simulation are listed in \cref{tableSolution}. As can be seen from \cref{tableSolution}, results of the numerical simulation are in good agreement with the experimental data.
 
-Solution has been obtained for three different velocities and three different particle diameters. Results of the numerical simulation, compared with the Dirgo and Leith\cite{DirgoLeith} experimental data presented in \cref{tableSolution}. As can be seen from the table, results of the numerical simulation are in good agreement with the experimental data. As might be expected, cyclone efficiency degrades in direct ratio with particles diameter. For diameter $\le 10^{-7}m$ cyclone is not applicable at all, but for diameter $\ge 10^{-5}m$ it shows almost $100\%$ efficiency. With the decrease of the inlet velocity, cyclone efficiency also degrades due to decreasing influence of a centrifugal force.
+As expected, the cyclone efficiency decreases with decreasing particle diameter. For a particle diameter of $10^{-7}m$ the cyclone is not applicable because only a small number of particles is filtered out in the cyclone. For a particle diameter of $10^{-5}m$ the cyclone efficiency is almost 100\% i.e. all particles are filtered out. The cyclone efficiency also falls with decreasing inlet velocity due to a decreasing influence of the centrifugal force. Particle distribution in the cyclone is presented in \cref{fig:parcelsCyclone1} for two particle diameters. It can be seen from \cref{fig:parcelsCyclone1} that particles with diameter $10^{-7}m$ distributed almost uniformly inside the cyclone which means that the influence of centrifugal forces is not strong enough to filter out a significant fraction of particles. On the opposite, particles with diameters $10^{-5}m$ are distributed mostly inside the boundary layer on the cyclone sidewall and in the lower part of the cyclone and can be filtered out.
 
-Results of particle distribution presented in \cref{fig:parcelsCyclone1,fig:parcelsCyclone3}. Particles with diameter $\le 10^{-7}$ almost uniformly distributed inside filter which apparently means that influence of centrifugal forces is not large enough to filter out significant part of particles. In opposite, particles with diameters $\ge 10^{-5}$ distributed mostly inside boundary layer on filter sidewall and can be filtered out.
+Therefore it can be concluded that the curvature correction function suggested in \cite{ShurSpallart}, reformulated in \cite{Smirnov} and implemented using OpenFOAM{\textregistered} in this paper an be succesfully used for simulation of turbulent flows with a high streamline curvature in a cyclonic separator.
 
-According to the calculation results we can make a conclusion that curvature correction function, suggested in \cite{ShurSpallart}, reformulated in \cite{Smirnov} and implemented using OpenFOAM in current paper, can be successfully used for simulation of turbulent flows with high streamlines curvature.
-
-\begin{minipage}{0.6\textwidth}
-    \captionof{table}{Cyclone geometric parameters}
-    \label{cycloneGeomPar}
-			\begin{tabular}{r l}
-				\hline
-				\label{geometrytable}
-				Cylinder diameter,& $D=0.205m$ \\
-				Outlet diameter,& $D_e=0.5D$ \\
-				Inlet channel height,& $a=0.5D$ \\
-				Inlet channel width,& $b=0.2D$ \\
-				Inlet channel length,& $h_e=0.75D$ \\
-				Total filter height,& $H=4.0D$ \\
-				Cylinder height,& $h=1.5D$ \\
-				Lower section diameter,& $B=0.36D$ \\
-				Dust height,& $h_d=0.25D$ \\
-				Dust diameter,& $D_d=0.75D$ \\
-			\end{tabular}
-			\vspace{1pc}
-			\captionof{table}{Cyclone Flow parameters}
-    \label{cycloneBC}
+\begin{minipage}{0.58\textwidth}
+    \captionof{table}{Cyclone geometry parameters}
+	\label{geometrytable}
 	\begin{tabular}{r l}
 		\hline
-		\label{geometrytable}
+		Cylinder diameter,& $D=0.205m$ \\
+		Outlet diameter,& $D_e=0.5D$ \\
+		Inlet channel height,& $a=0.5D$ \\
+		Inlet channel width,& $b=0.2D$ \\
+		Inlet channel length,& $h_e=0.75D$ \\
+		Total filter height,& $H=4.0D$ \\
+		Cylinder height,& $h=1.5D$ \\
+		Lower section diameter,& $B=0.36D$ \\
+		Dust height,& $h_d=0.25D$ \\
+		Dust diameter,& $D_d=0.75D$ \\
+	\end{tabular}
+	\vspace{1pc}
+	\captionof{table}{Cyclone flow parameters}
+	\label{flowtable}
+	\begin{tabular}{r l}
+		\hline
 		Inlet velocity, &$U_{in}=$  $5, 10, 15, 20 m/s$ \\
 		Inlet temperature,& $T_{in}=$  $300 K$ \\
 		Particles temperature,& ${T_p}_{in}=$  $T_{in}$ \\
@@ -229,8 +222,8 @@ According to the calculation results we can make a conclusion that curvature cor
     \end{minipage}
     \hspace{1em}
   \begin{minipage}{0.35\textwidth}
-    \includegraphics[scale=0.45]{cycloneGeometryTeta}
-	\captionof{figure}{Cyclone scheme}
+    \includegraphics[scale=0.43]{cycloneGeometryTeta}
+	\captionof{figure}{Stairmand cyclone \\geometry}
 	\label{fig:cycloneGeometryScheme}
   \end{minipage}
 \begin{table}[h]
@@ -260,18 +253,20 @@ According to the calculation results we can make a conclusion that curvature cor
 \begin{figure}[h]
 	\begin{minipage}{0.475\linewidth}
 		\includegraphics[scale=0.4]{parcelsCyclone1}
-		\caption{Particles distribution for $d \sim 10^{-7}$ и $U_{in} = 20m/s$}
-		\label{fig:parcelsCyclone1}
 	\end{minipage}
 	\hspace{0.5em}
 	\begin{minipage}{0.475\linewidth}
 		\includegraphics[scale=0.4]{parcelsCyclone3}
-		\caption{Particles distribution for $d \sim 10^{-5}$ и $U_{in} = 20m/s$}
-		\label{fig:parcelsCyclone3}
 	\end{minipage}
+	\caption{Particles distribution in cyclone for $d_p \sim 10^{-7}m$ (on the left) and $d_p \sim 10^{-5}m$ (on the right) for inlet velocity $U_{in} = 20m/s$.}
+		\label{fig:parcelsCyclone1}
 \end{figure}	
+
+\section{Conclusion}
+A modified SST model with the curvature correction term was implemented in OpenFOAM{\textregistered}. The model validation for the U-duct channel shows a significant improvement of the velocity profiles prediction as compared with the non-modified SST model.
+
+Simulation of the cyclonic separator efficiency shows that the implemented model can be successfully used for this kind of simulations.
+
 \section*{References}
 \bibliography{iopart-num}
 \end{document}
-
-

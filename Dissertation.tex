@@ -1,0 +1,44 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage[utf8]{inputenc}
+\ifx\pdfoutput\undefined
+	\usepackage{graphicx}
+\else
+	\usepackage[pdftex]{graphicx}
+	\usepackage{epstopdf}
+\fi
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[font=normalsize,labelfont=bf]{caption}
+\usepackage[unicode=true, hypertexnames=false]{hyperref}
+\usepackage{afterpage}
+\hypersetup{
+		pdftitle={Богданов Д.А., “Численное исследование теплового потока для задачи обтекания затупленного тела гиперзвуковым потоком ионизированного газа”, 2015},
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\oddsidemargin=0pt
+\textwidth=155mm
+\title{Численное исследование теплового потока для задачи обтекания затупленного тела гиперзвуковым потоком ионизированного газа}
+\author{Дмитрий Богданов}
+\author{Сергей Поняев}
+\date{}
+\renewcommand\normalsize{\fontsize{14pt}{24pt}\selectfont}
+\begin{document}
+\input{titlepage}
+\tableofcontents
+\newpage
+\input{Abstract}
+\newpage
+\input{Overview}
+\newpage
+\input{Conclusion}
+\newpage
+\thispagestyle{plain}
+\bibliographystyle{unsrt}
+\bibliography{dimbib}
+\end{document}

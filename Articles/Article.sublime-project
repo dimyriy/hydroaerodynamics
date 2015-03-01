@@ -1,0 +1,7 @@
+{
+	"options": {
+		"root": "Article.tex",
+		"pdf": "build/Article",
+		"outdir": "build"
+	}
+}

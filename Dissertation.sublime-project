@@ -1,7 +1,7 @@
 {
 	"options": {
 		"root": "Dissertation.tex",
-		"pdf": "build/Dissertation",
+		"pdf": "Output/Dissertation",
 		"output_directory": true,
 		"output_directory_mode": 0,
 		"bibname": "dimbib.bib"

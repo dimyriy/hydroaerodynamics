@@ -1,0 +1,7 @@
+#!/bin/sh
+rm -rf [0-9].*
+rm -rf [0-9]e*
+rm -rf 0/fluidVolume
+rm -rf 0/solidVolume
+rm -rf processor*
+# -----------------------------------------------------------------------------

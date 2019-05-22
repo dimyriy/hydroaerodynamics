@@ -1,0 +1,52 @@
+\subsection{Уравнения движения}
+		\subparagraph{Уравнение баланса массы\\}
+			\begin{equation}
+				\frac{\partial \rho}{\partial t} + \frac{\partial}{\partial x_i}(\rho u_i) = 0
+			\end{equation}
+		\subparagraph{Уравнение баланса импульса\\}
+			\begin{equation}
+				\frac{\partial \rho u_i}{\partial t} + \frac{\partial}{\partial x_j}(\rho u_iu_j) = - \frac{\partial p}{\partial x_i} + \frac{\partial {\tau_{ij}}_{eff}}{\partial x_j} + {S_u}_i,
+				\label{flowEqn}
+			\end{equation}
+			где ${\tau_{ij}}_{eff}$ - тензор вязких напряжений, выражаемый по формуле
+			\begin{equation}
+				{\tau_{ij}}_{eff} = \mu_{eff}\left( \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right) - \frac{2}{3}\mu_{eff}\frac{\partial u_i}{\partial x_j} \delta_{ij} \quad \mu_{eff} = \mu + \mu_{t}
+			\end{equation}
+		\subparagraph{Уравнение баланса энтальпии\\}
+		\begin{equation}
+			\frac{\partial \rho h}{\partial t} + \frac{\partial}{\partial x_j} (\rho u_j h) = \frac{\partial p}{\partial t} + \frac{\partial}{\partial x_j} \left((\alpha + \alpha_t) \frac{\partial h}{\partial x_j}\right) - \frac{\partial}{\partial t}\left(\rho \frac{\vec{V}^2}{2}\right) - \frac{\partial}{\partial x_j}\left(\rho u_j \frac{\vec{V}^2}{2}\right) + S_h,
+			\label{thermoEqn}
+		\end{equation}
+		 где $\alpha$ - коэффициент температуропроводности.
+		\subparagraph{Уравнение состояния\\}
+			\hspace{2em}При расчётах течений сжимаемой жидкости используется модель идеального газа:
+			\begin{equation}
+				\frac{p}{\rho} = \frac{R}{M}T, \quad M = 28.966 \frac{g}{mole}
+			\end{equation}
+		\subparagraph{Зависимость вязкости от температуры\\}
+				\hspace{2em}Зависимость вязкости от температуры для неизотермических течений выражается формулой Саттерленда.
+				\begin{equation}
+					\mu = \mu_0 \left(\frac{T}{T_0}\right)^{3/2} \frac{T_0 + S}{T + S},
+				\end{equation}
+					где $\mu_0 = 1.716 \cdot 10^{-5} \frac{kg \cdot m}{s}, \quad T_0 = 273.11 K$, а $S=110.56 K$.
+					
+				Для течений, температура в которых меняется слабо, вязкость полагается постоянной.
+		\subparagraph{Уравнение движения частиц}
+			\begin{equation}
+				m_p \frac{d \vec{V}_p}{dt} = \frac{1}{2}\rho |\vec{V}-\vec{V}_p|(\vec{V}-\vec{V}_p)\frac{d_p^2 \pi}{4}C_D + m_p \vec{g}\frac{\rho_p-\rho}{\rho_p} + \vec{F}_{\nabla{p}},		
+			\end{equation}
+			где $m_p$ -- масса частицы, $\vec{V}_p$ -- скорость частицы, $\vec{V}$ -- скорость жидкости, $C_D$ -- коэффициент сопротивления, $\rho_p$ -- плотность частицы, $\rho$ -- плотность несущей среды, $\vec{F}_{\nabla{p}}$ -- сила, обусловленная действием на частицу градиента давления.
+		\subparagraph{Влияние частиц на несущую фазу\\}
+		
+		В уравнениях баланса импульса (\ref{flowEqn}) и энтальпии (\ref{thermoEqn}) присутствуют источниковые члены ${S_u}_i$ и $S_h$, которые, учитывают вклад дисперсных включений в балансовые соотношения. Согласно \cite{Vallier}, сила, действующая со стороны частицы на единицу объёма жидкости, пропорциональна разнице импульсов частицы между моментом её появления в ячейке $t_{in}$ и моментом выхода из ячейки $t_{out}$: $m_p\left( (\vec{V}_p)_{t_{out}} - (\vec{V}_p)_{t_{in}}\right)$. Влияние всех частиц, которые прошли через ячейку за время dt, запишется, как
+		\begin{equation}
+			{S_u}_i = \frac{1}{V_{cell}dt} \sum_p m_p \left( ({u_i}_p)_{t_{out}} - ({u_i}_p)_{t_{in}}\right),\\
+		\end{equation}
+		где $p$ -- номер частицы, $V_{cell}$ -- объём ячейки.
+		
+		Источниковый член для уравнения энтальпии,
+		\begin{equation}
+			S_h = \rho c_p \frac{d m_p T_p}{dt},
+		\end{equation}
+		где $c_p$ -- теплоёмкость дисперсной фазы, $T_p$ -- температура частицы, рассчитывается из тех же соображений.
+	%Основные уравнения

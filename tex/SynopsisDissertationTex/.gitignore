@@ -1,0 +1,12 @@
+*.toc
+*.nav
+*.aux
+*.dvi
+*.out
+*.ps
+*.snm
+*.log
+*.tex~
+*.bbl
+*.blg
+*.bib~

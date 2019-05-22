@@ -1,0 +1,11 @@
+*.gz
+~*
+texText
+*.log
+*.bbl
+*.out
+*.dvi
+*.blo
+*converted-to.pdf
+*.blg
+*.aux

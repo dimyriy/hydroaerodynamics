@@ -1,0 +1,36 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+PIMPLE
+{
+    nSolidCorrections 2;
+    debugLevel        1;
+    resPrint       false;
+}
+SIMPLE
+{
+    nSolidCorrections 1;
+    debugLevel        0;
+    resPrint       true;
+    nNonOrthCorrections 10;
+    nNonOrthogonalCorrectors 10;
+    rhoMin rhoMin [1 -3 0 0 0 0 0] 1.165;
+    rhoMax rhoMax [1 -3 0 0 0 0 0] 1.185;
+
+
+}
+
+// ************************************************************************* //
